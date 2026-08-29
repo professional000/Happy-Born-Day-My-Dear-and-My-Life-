@@ -8,9 +8,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#ff4f9a">
+    <meta name="theme-color" content="#ff4b9b">
 
-    <title>🎂 A Special Surprise For You ❤️</title>
+    <title>Happy Born-Day My Dear ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -19,55 +19,49 @@
 <body>
 
     <!-- =================================
-         FLOATING HEARTS
-    ================================== -->
+         BACKGROUND HEARTS
+    ================================= -->
 
-    <div id="hearts-container"></div>
+    <div id="heartsContainer"></div>
 
 
     <!-- =================================
-         AUDIO
-    ================================== -->
+         BACKGROUND MUSIC
+    ================================= -->
 
-    <audio id="backgroundMusic" loop>
-        <source src="music/love-song.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="popSound">
-        <source src="sounds/pop.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="fireworkSound">
-        <source src="sounds/fireworks.mp3" type="audio/mpeg">
+    <audio id="loveSong" loop>
+        <source src="love-song.mp3" type="audio/mpeg">
     </audio>
 
 
     <!-- =================================
          START SCREEN
-    ================================== -->
+    ================================= -->
 
     <section id="startScreen" class="screen active">
 
-        <div class="start-box">
+        <div class="glass-card start-card">
 
-            <div class="cake">🎂</div>
+            <div class="cake">
+                🎂
+            </div>
 
-            <p class="small-title">
-                A SPECIAL SURPRISE
-            </p>
+            <div class="tiny-title">
+                A SPECIAL SURPRISE FOR YOU
+            </div>
 
             <h1>
-                Happy Birthday ❤️
+                Happy Birthday
+                <span>❤️</span>
             </h1>
 
-            <p class="start-text">
-
+            <p>
                 இன்று உனக்காக மட்டும்<br>
-                ஒரு சின்ன surprise... ✨
-
+                ஒரு அழகான surprise காத்திருக்கிறது... ✨
             </p>
 
-            <button id="startButton" class="main-button">
+            <button id="startButton"
+                    class="main-button">
 
                 Open Your Surprise 💝
 
@@ -80,34 +74,35 @@
 
     <!-- =================================
          SCRATCH SCREEN
-    ================================== -->
+    ================================= -->
 
     <section id="scratchScreen" class="screen">
 
-        <div class="scratch-content">
+        <div class="scratch-area">
 
-            <p class="small-title">
-                YOUR SPECIAL MOMENT
-            </p>
+            <div class="tiny-title">
+                YOUR SPECIAL PHOTO
+            </div>
 
             <h2>
-                Scratch & Reveal ❤️
+                Scratch Me ❤️
             </h2>
 
             <p class="instruction">
 
-                இந்த photo-வை scratch பண்ணு...<br>
-                உள்ளே ஒரு surprise இருக்கு ✨
+                இந்த photo-வை மெதுவாக scratch பண்ணு...<br>
+                உனக்காக ஒரு surprise இருக்கு ✨
 
             </p>
 
 
-            <div class="scratch-wrapper">
+            <!-- PHOTO -->
+
+            <div class="scratch-box">
 
                 <img
-                    src="photos/birthday.jpg"
+                    src="birthday.jpg"
                     id="birthdayPhoto"
-                    class="birthday-photo"
                     alt="Birthday Photo"
                 >
 
@@ -116,8 +111,10 @@
             </div>
 
 
-            <div id="scratchPercent">
+            <div id="scratchStatus">
+
                 Scratch: 0%
+
             </div>
 
         </div>
@@ -126,20 +123,20 @@
 
 
     <!-- =================================
-         BIRTHDAY SCREEN
-    ================================== -->
+         BIRTHDAY WISH
+    ================================= -->
 
     <section id="birthdayScreen" class="screen">
 
-        <div class="message-card">
+        <div class="glass-card message-card">
 
-            <div class="big-heart">
+            <div class="heart-icon">
                 ❤️
             </div>
 
-            <p class="small-title">
-                YOUR SPECIAL DAY
-            </p>
+            <div class="tiny-title">
+                TODAY IS YOUR SPECIAL DAY
+            </div>
 
             <h1>
                 Happy Birthday 🎂
@@ -153,33 +150,47 @@
             <div class="poem">
 
                 கனவில் பார்த்த அழகல்ல நீ...<br>
+
                 என் கனவையே அழகாக்கியவள் நீ... ❤️<br><br>
 
+
                 ஆயிரம் பேர் இந்த உலகத்தில் இருந்தாலும்,<br>
+
                 என் மனசு தேடியது உன்னை மட்டும் தான்... 💕<br><br>
 
-                உன் சிரிப்பில் ஒரு உலகம் இருக்கிறது,<br>
-                உன் பார்வையில் ஒரு கவிதை இருக்கிறது,<br>
-                உன் குரலில் ஒரு இசை இருக்கிறது... 🎶<br><br>
 
-                உன்னை பார்க்கும் ஒவ்வொரு நொடியும்<br>
-                என் மனதில் ஒரு புதிய கவிதை பிறக்கிறது... 🌹<br><br>
+                உன் சிரிப்பில் ஒரு உலகம் இருக்கிறது,<br>
+
+                உன் பார்வையில் ஒரு கவிதை இருக்கிறது,<br>
+
+                உன் குரலில் ஒரு இனிமையான இசை இருக்கிறது... 🎶<br><br>
+
+
+                நீ சிரிக்கும் போது<br>
+
+                என் உலகமே கொஞ்சம் அழகாகிறது... 🌹<br><br>
+
 
                 இன்று உன் பிறந்த நாள்... 🎂<br>
+
                 ஆனால் பரிசு கிடைத்தது எனக்குத்தான்...<br><br>
 
-                ஏனென்றால்,<br>
+
+                ஏனென்றால்...<br>
+
+                இந்த உலகத்தில்<br>
 
                 <strong>
-                    இந்த உலகத்தில் நீ பிறந்த நாள் அல்லவா இது... ❤️
+                    நீ பிறந்த நாள் அல்லவா இது... ❤️
                 </strong>
 
             </div>
 
 
-            <button id="continueButton" class="main-button">
+            <button id="birthdayContinue"
+                    class="main-button">
 
-                இன்னும் ஒரு surprise இருக்கு... 💌
+                இன்னும் ஒரு விஷயம் இருக்கு... 💌
 
             </button>
 
@@ -189,58 +200,78 @@
 
 
     <!-- =================================
-         LOVE PROPOSAL SCREEN
-    ================================== -->
+         LOVE PROPOSAL POEM
+    ================================= -->
 
     <section id="proposalScreen" class="screen">
 
-        <div class="proposal-card">
+        <div class="glass-card proposal-card">
 
             <div class="rose">
                 🌹
             </div>
 
-            <p class="small-title">
-                FROM MY HEART
-            </p>
+            <div class="tiny-title">
+                SOMETHING FROM MY HEART
+            </div>
 
             <h1>
-                ஒரு விஷயம் சொல்லணும்... ❤️
+                உன்னிடம் ஒரு விஷயம்... ❤️
             </h1>
 
 
             <div class="proposal-poem">
 
                 உன்னை முதலில் பார்த்த அந்த நொடி,<br>
+
                 ஏதோ ஒரு மாற்றம் என் மனதில் நடந்தது... ✨<br><br>
 
+
                 பேசாமல் இருந்தாலும்,<br>
+
                 உன் நினைவுகள் என்னிடம் பேசிக்கொண்டே இருக்கின்றன... 💕<br><br>
 
+
                 உன் பெயர் என் phone-ல் இருக்கும்<br>
+
                 ஒரு contact மட்டும் இல்லை...<br>
-                என் மனதில் இருக்கும் ஒரு special place... ❤️<br><br>
+
+                என் மனதில் இருக்கும்<br>
+
+                ஒரு special place... ❤️<br><br>
+
 
                 நாட்கள் மாறலாம்,<br>
+
                 இடங்கள் மாறலாம்,<br>
+
                 வாழ்க்கையே மாறலாம்...<br><br>
 
+
                 ஆனால் என் மனதில்<br>
+
                 உனக்கான இடம் மட்டும்<br>
+
                 ஒருபோதும் மாறாது... 💖<br><br>
 
-                என் வாழ்க்கையின் மீதமுள்ள கதையை<br>
+
+                என் வாழ்க்கையின்<br>
+
+                மீதமுள்ள கதையை<br>
+
                 உன்னோடு எழுதலாமா? 🌹<br><br>
+
 
                 <strong>
                     என் ஒவ்வொரு நாளிலும்<br>
-                    உன்னை வைத்துக்கொள்ளலாமா? ❤️
+                    என்னுடன் இருப்பாயா? ❤️
                 </strong>
 
             </div>
 
 
-            <button id="proposalButton" class="main-button">
+            <button id="proposalButton"
+                    class="main-button">
 
                 I Have One Question For You 💍
 
@@ -253,56 +284,63 @@
 
     <!-- =================================
          FINAL PROPOSAL
-    ================================== -->
+    ================================= -->
 
     <section id="finalScreen" class="screen">
 
-        <div class="final-card">
+        <div class="glass-card final-card">
 
             <div class="ring">
                 💍
             </div>
 
-            <p class="small-title">
+            <div class="tiny-title">
                 ONE LAST QUESTION
-            </p>
+            </div>
 
             <h1>
-                Will You Be Mine? ❤️
+                Will You Be Mine?
+                ❤️
             </h1>
 
-            <p class="final-text">
+            <p class="final-poem">
 
                 இன்று மட்டும் அல்ல...<br>
+
                 நாளையும் மட்டும் அல்ல...<br>
+
                 என் வாழ்க்கையின்<br>
-                ஒவ்வொரு நாளிலும் நீ இருப்பாயா? 💕
+
+                ஒவ்வொரு நாளிலும்<br>
+
+                நீ இருப்பாயா? 💕
 
             </p>
 
 
-            <!-- YES / NO -->
+            <!-- BUTTONS -->
 
-            <div class="buttons">
+            <div class="answer-buttons">
 
-                <button
-                    id="yesButton"
-                    class="yes"
-                >
+                <button id="yesButton"
+                        class="yes-button">
+
                     ❤️ YES
+
                 </button>
 
-                <button
-                    id="noButton"
-                    class="no"
-                >
+
+                <button id="noButton"
+                        class="no-button">
+
                     💔 NO
+
                 </button>
 
             </div>
 
 
-            <!-- Answer -->
+            <!-- RESULT -->
 
             <div id="answerMessage"></div>
 
@@ -312,16 +350,16 @@
 
 
     <!-- =================================
-         FIREWORK CANVAS
-    ================================== -->
+         FIREWORKS
+    ================================= -->
 
     <canvas id="fireworksCanvas"></canvas>
 
 
     <!-- =================================
-         RESULT FORM
-         Formspree
-    ================================== -->
+         FORM RESULT
+         REPLACE YOUR_FORM_ID
+    ================================= -->
 
     <form
         id="resultForm"
@@ -332,8 +370,8 @@
 
         <input
             type="hidden"
-            name="response"
-            id="formResponse"
+            name="answer"
+            id="formAnswer"
         >
 
         <input
@@ -350,7 +388,7 @@
 
         <input
             type="hidden"
-            name="website"
+            name="page"
             value="Birthday Love Proposal"
         >
 
