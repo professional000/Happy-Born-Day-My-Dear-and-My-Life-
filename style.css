@@ -19,28 +19,28 @@ body {
         "Times New Roman",
         serif;
 
-    overflow-x: hidden;
-
     color: white;
+
+    overflow-x: hidden;
 
     background:
 
         radial-gradient(
-            circle at 20% 20%,
-            #ffb7dc,
-            transparent 35%
+            circle at 15% 15%,
+            rgba(255, 190, 225, 0.8),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 80% 80%,
-            #7d285f,
+            circle at 85% 80%,
+            rgba(142, 35, 110, 0.8),
             transparent 40%
         ),
 
         linear-gradient(
             135deg,
-            #ff5ca8,
-            #541447
+            #ff65aa,
+            #571347
         );
 
 }
@@ -52,21 +52,21 @@ body {
 
 .screen {
 
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
 
     display: none;
 
     align-items: center;
     justify-content: center;
 
-    padding: 25px;
+    padding: 20px;
+
+    text-align: center;
 
     position: relative;
 
     z-index: 5;
-
-    text-align: center;
 
 }
 
@@ -79,14 +79,14 @@ body {
 
 
 /* =================================
-   START
+   GLASS CARD
 ================================= */
 
-.start-box {
+.glass-card {
 
-    width: min(92vw, 650px);
+    width: min(94vw, 680px);
 
-    padding: 45px 25px;
+    padding: 40px 25px;
 
     border-radius: 35px;
 
@@ -94,7 +94,10 @@ body {
         rgba(255,255,255,0.14);
 
     backdrop-filter:
-        blur(18px);
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
 
     border:
         1px solid
@@ -105,7 +108,18 @@ body {
         rgba(0,0,0,0.35);
 
     animation:
-        appear 1.2s ease;
+        cardAppear 1.2s ease;
+
+}
+
+
+/* =================================
+   START
+================================= */
+
+.start-card {
+
+    max-width: 620px;
 
 }
 
@@ -115,20 +129,20 @@ body {
     font-size: 90px;
 
     animation:
-        floating 2s infinite ease-in-out;
+        floating 2s ease-in-out infinite;
 
 }
 
 
-.small-title {
+.tiny-title {
 
-    font-size: 12px;
+    font-size: 11px;
 
     letter-spacing: 5px;
 
-    opacity: 0.8;
+    opacity: 0.85;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
 }
 
@@ -136,7 +150,7 @@ body {
 h1 {
 
     font-size:
-        clamp(38px, 9vw, 70px);
+        clamp(38px, 9vw, 68px);
 
     line-height: 1.15;
 
@@ -152,16 +166,16 @@ h1 {
 h2 {
 
     font-size:
-        clamp(22px, 5vw, 32px);
+        clamp(23px, 5vw, 32px);
 
     margin: 15px 0;
 
 }
 
 
-.start-text {
+p {
 
-    font-size: 19px;
+    font-size: 18px;
 
     line-height: 1.8;
 
@@ -174,18 +188,18 @@ h2 {
 
 .main-button {
 
-    margin-top: 30px;
+    border: none;
 
     padding:
         16px 30px;
 
-    border: none;
+    margin-top: 30px;
 
     border-radius: 100px;
 
     background: white;
 
-    color: #b51c6c;
+    color: #a51662;
 
     font-size: 17px;
 
@@ -198,8 +212,7 @@ h2 {
         rgba(0,0,0,0.3);
 
     transition:
-        transform 0.3s,
-        box-shadow 0.3s;
+        0.3s ease;
 
 }
 
@@ -210,17 +223,13 @@ h2 {
         translateY(-5px)
         scale(1.04);
 
-    box-shadow:
-        0 18px 45px
-        rgba(0,0,0,0.4);
-
 }
 
 
 .main-button:active {
 
     transform:
-        scale(0.96);
+        scale(0.95);
 
 }
 
@@ -229,14 +238,7 @@ h2 {
    SCRATCH
 ================================= */
 
-#scratchScreen {
-
-    flex-direction: column;
-
-}
-
-
-.scratch-content {
+.scratch-area {
 
     width: 100%;
 
@@ -251,28 +253,26 @@ h2 {
 
 .instruction {
 
-    font-size: 18px;
-
-    line-height: 1.7;
-
     margin-bottom: 20px;
 
 }
 
 
-.scratch-wrapper {
+.scratch-box {
+
+    width:
+        min(88vw, 430px);
+
+    height:
+        min(120vw, 550px);
+
+    max-height: 67vh;
 
     position: relative;
 
-    width: min(88vw, 430px);
-
-    height: min(120vw, 550px);
-
-    max-height: 68vh;
+    overflow: hidden;
 
     border-radius: 28px;
-
-    overflow: hidden;
 
     background: #222;
 
@@ -283,7 +283,7 @@ h2 {
 }
 
 
-.birthday-photo {
+#birthdayPhoto {
 
     width: 100%;
     height: 100%;
@@ -311,57 +311,63 @@ h2 {
 }
 
 
-#scratchPercent {
+#scratchStatus {
 
     margin-top: 18px;
 
-    font-size: 17px;
-
     font-weight: bold;
+
+    font-size: 17px;
 
 }
 
 
 /* =================================
-   CARDS
+   BIRTHDAY CARD
 ================================= */
 
-.message-card,
-.proposal-card,
-.final-card {
+.message-card {
 
-    width: min(94vw, 680px);
-
-    padding: 40px 25px;
-
-    border-radius: 35px;
-
-    background:
-        rgba(255,255,255,0.13);
-
-    backdrop-filter:
-        blur(20px);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.25);
-
-    box-shadow:
-        0 30px 90px
-        rgba(0,0,0,0.4);
-
-    animation:
-        appear 1.2s ease;
+    max-width: 680px;
 
 }
 
 
-.big-heart {
+.heart-icon {
 
     font-size: 75px;
 
     animation:
         heartbeat 1.1s infinite;
+
+}
+
+
+.poem {
+
+    margin-top: 25px;
+
+    font-size: 19px;
+
+    line-height: 2;
+
+}
+
+
+.poem strong {
+
+    font-size: 21px;
+
+}
+
+
+/* =================================
+   PROPOSAL
+================================= */
+
+.proposal-card {
+
+    max-width: 680px;
 
 }
 
@@ -376,21 +382,6 @@ h2 {
 }
 
 
-.ring {
-
-    font-size: 90px;
-
-    animation:
-        heartbeat 1.1s infinite;
-
-}
-
-
-/* =================================
-   POEMS
-================================= */
-
-.poem,
 .proposal-poem {
 
     margin-top: 25px;
@@ -402,7 +393,6 @@ h2 {
 }
 
 
-.poem strong,
 .proposal-poem strong {
 
     font-size: 21px;
@@ -414,18 +404,39 @@ h2 {
    FINAL
 ================================= */
 
-.final-text {
+.final-card {
+
+    max-width: 650px;
+
+}
+
+
+.ring {
+
+    font-size: 90px;
+
+    animation:
+        heartbeat 1.1s infinite;
+
+}
+
+
+.final-poem {
+
+    margin-top: 20px;
 
     font-size: 19px;
 
     line-height: 2;
 
-    margin-top: 15px;
-
 }
 
 
-.buttons {
+/* =================================
+   YES NO
+================================= */
+
+.answer-buttons {
 
     display: flex;
 
@@ -433,22 +444,23 @@ h2 {
 
     align-items: center;
 
-    gap: 20px;
+    gap: 18px;
 
     margin-top: 30px;
 
-    min-height: 70px;
+    min-height: 65px;
 
 }
 
 
-.buttons button {
+.answer-buttons button {
 
     border: none;
 
     border-radius: 100px;
 
-    padding: 15px 30px;
+    padding:
+        15px 30px;
 
     min-width: 130px;
 
@@ -463,31 +475,40 @@ h2 {
 }
 
 
-.yes {
+.yes-button {
 
-    background: #ff2d91;
+    background: #ff238d;
 
     color: white;
 
     box-shadow:
         0 10px 30px
-        rgba(255,45,145,0.5);
+        rgba(255,35,141,0.5);
 
 }
 
 
-.yes:hover {
+.yes-button:hover {
 
-    transform: scale(1.12);
+    transform:
+        scale(1.12);
 
 }
 
 
-.no {
+.no-button {
 
     background: white;
 
     color: #555;
+
+}
+
+
+.no-button:hover {
+
+    transform:
+        scale(1.05);
 
 }
 
@@ -500,7 +521,7 @@ h2 {
 
     font-weight: bold;
 
-    line-height: 1.7;
+    line-height: 1.8;
 
 }
 
@@ -509,15 +530,15 @@ h2 {
    FLOATING HEARTS
 ================================= */
 
-#hearts-container {
+#heartsContainer {
 
     position: fixed;
 
     inset: 0;
 
-    pointer-events: none;
-
     overflow: hidden;
+
+    pointer-events: none;
 
     z-index: 1;
 
@@ -528,39 +549,18 @@ h2 {
 
     position: absolute;
 
-    bottom: -60px;
+    bottom: -50px;
 
     animation:
-        riseHeart linear forwards;
+        heartRise linear forwards;
 
     opacity: 0.75;
 
 }
 
 
-@keyframes riseHeart {
-
-    from {
-
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-    }
-
-    to {
-
-        transform:
-            translateY(-115vh)
-            rotate(360deg);
-
-    }
-
-}
-
-
 /* =================================
-   FIREWORK
+   FIREWORK CANVAS
 ================================= */
 
 #fireworksCanvas {
@@ -574,7 +574,7 @@ h2 {
 
     pointer-events: none;
 
-    z-index: 50;
+    z-index: 100;
 
     display: none;
 
@@ -585,7 +585,7 @@ h2 {
    ANIMATIONS
 ================================= */
 
-@keyframes appear {
+@keyframes cardAppear {
 
     from {
 
@@ -650,6 +650,27 @@ h2 {
 }
 
 
+@keyframes heartRise {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-115vh)
+            rotate(360deg);
+
+    }
+
+}
+
+
 /* =================================
    MOBILE
 ================================= */
@@ -658,19 +679,22 @@ h2 {
 
     .screen {
 
-        padding: 15px;
+        padding:
+            14px;
 
     }
 
-    .start-box,
-    .message-card,
-    .proposal-card,
-    .final-card {
+
+    .glass-card {
 
         padding:
             30px 18px;
 
+        border-radius:
+            28px;
+
     }
+
 
     .poem,
     .proposal-poem {
@@ -681,6 +705,7 @@ h2 {
 
     }
 
+
     .poem strong,
     .proposal-poem strong {
 
@@ -688,13 +713,15 @@ h2 {
 
     }
 
-    .buttons {
 
-        gap: 12px;
+    .answer-buttons {
+
+        gap: 10px;
 
     }
 
-    .buttons button {
+
+    .answer-buttons button {
 
         min-width: 120px;
 
