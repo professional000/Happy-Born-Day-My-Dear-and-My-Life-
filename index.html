@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 
 <head>
 
@@ -8,394 +8,483 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#ff4b9b">
+    <meta name="theme-color"
+          content="#ff4f9a">
 
-    <title>Happy Born-Day My Dear ❤️</title>
+    <title>
+        Happy Born-Day My Dear ❤️
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
 
 </head>
 
 <body>
 
-    <!-- =================================
-         BACKGROUND HEARTS
-    ================================= -->
 
-    <div id="heartsContainer"></div>
+<!-- =====================================
+     FLOATING HEARTS
+===================================== -->
 
-
-    <!-- =================================
-         BACKGROUND MUSIC
-    ================================= -->
-
-    <audio id="loveSong" loop>
-        <source src="love-song.mp3" type="audio/mpeg">
-    </audio>
+<div id="heartsContainer"></div>
 
 
-    <!-- =================================
-         START SCREEN
-    ================================= -->
+<!-- =====================================
+     MUSIC
+===================================== -->
 
-    <section id="startScreen" class="screen active">
+<audio id="loveSong"
+       loop
+       preload="auto">
 
-        <div class="glass-card start-card">
+    <source src="love-song.mp3"
+            type="audio/mpeg">
 
-            <div class="cake">
-                🎂
-            </div>
+</audio>
 
-            <div class="tiny-title">
-                A SPECIAL SURPRISE FOR YOU
-            </div>
 
-            <h1>
-                Happy Birthday
-                <span>❤️</span>
-            </h1>
+<!-- =====================================
+     SCREEN 1
+===================================== -->
 
-            <p>
-                இன்று உனக்காக மட்டும்<br>
-                ஒரு அழகான surprise காத்திருக்கிறது... ✨
-            </p>
+<section id="startScreen"
+         class="screen active">
 
-            <button id="startButton"
-                    class="main-button">
+    <div class="card">
 
-                Open Your Surprise 💝
+        <div class="big-emoji">
+            🎁
+        </div>
+
+        <p class="small-title">
+            A SPECIAL GIFT FOR YOU
+        </p>
+
+        <h1>
+            Happy Birthday ❤️
+        </h1>
+
+        <p class="intro-text">
+
+            உனக்காக நான் தயாரித்த<br>
+            ஒரு சின்ன surprise... 💕
+
+            <br><br>
+
+            இதை நீ மட்டும் தான் open
+            பண்ண வேண்டும்... ✨
+
+        </p>
+
+        <button
+            type="button"
+            id="openGiftButton"
+            class="main-button">
+
+            🎁 Open Your Gift
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCREEN 2
+     SCRATCH
+===================================== -->
+
+<section id="scratchScreen"
+         class="screen">
+
+    <div class="scratch-wrapper">
+
+        <p class="small-title">
+            YOUR SECRET PHOTO
+        </p>
+
+        <h2>
+            Scratch The Photo ❤️
+        </h2>
+
+        <p class="instruction">
+
+            Photo மேல இருக்கிற layer-ஐ
+            finger வைத்து scratch பண்ணு... ✨
+
+        </p>
+
+
+        <div class="scratch-box">
+
+            <img
+                id="birthdayPhoto"
+                src="birthday.jpg"
+                alt="Birthday Photo">
+
+
+            <canvas
+                id="scratchCanvas">
+            </canvas>
+
+        </div>
+
+
+        <p id="scratchStatus">
+            Scratch: 0%
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCREEN 3
+     BIRTHDAY WISH
+===================================== -->
+
+<section id="birthdayScreen"
+         class="screen">
+
+    <div class="card message-card">
+
+        <div class="big-emoji">
+            🎂
+        </div>
+
+        <p class="small-title">
+            TODAY IS YOUR SPECIAL DAY
+        </p>
+
+        <h1>
+            Happy Birthday ❤️
+        </h1>
+
+        <h2>
+            என் அழகான தேவதைக்கு... 🌹
+        </h2>
+
+
+        <div class="poem">
+
+            உன்னை பார்த்த அந்த நொடி,<br>
+
+            என் மனதில் ஏதோ ஒரு
+            அழகான மாற்றம் நடந்தது... ❤️
+
+            <br><br>
+
+            ஆயிரம் பேர் இந்த உலகத்தில்
+            இருந்தாலும்,<br>
+
+            என் கண்கள் தேடியது
+            உன்னை மட்டும் தான்... 💕
+
+            <br><br>
+
+            உன் சிரிப்பில் ஒரு உலகம்
+            இருக்கிறது... ✨
+
+            <br>
+
+            உன் பார்வையில் ஒரு கவிதை
+            இருக்கிறது...
+
+            <br>
+
+            உன் குரலில் ஒரு இனிமையான
+            இசை இருக்கிறது... 🎶
+
+            <br><br>
+
+            நீ சிரிக்கும் போது,<br>
+
+            என் உலகமே கொஞ்சம்
+            அழகாகிறது... ❤️
+
+            <br><br>
+
+            இன்று உன் பிறந்த நாள்... 🎂
+
+            <br>
+
+            ஆனால் பரிசு கிடைத்தது
+            எனக்குத்தான்...
+
+            <br><br>
+
+            ஏனென்றால்...
+
+            <br>
+
+            இந்த உலகத்தில்
+            <strong>
+                நீ பிறந்த நாள் அல்லவா இது... ❤️
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="birthdayContinue"
+            class="main-button">
+
+            💌 இன்னும் ஒரு Surprise
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCREEN 4
+     LOVE PROPOSAL POEM
+===================================== -->
+
+<section id="proposalScreen"
+         class="screen">
+
+    <div class="card message-card">
+
+        <div class="big-emoji">
+            🌹
+        </div>
+
+        <p class="small-title">
+            FROM MY HEART
+        </p>
+
+        <h1>
+            உன்னிடம் ஒரு விஷயம்... ❤️
+        </h1>
+
+
+        <div class="proposal-poem">
+
+            உன்னை முதலில் பார்த்த அந்த நொடி,
+
+            <br>
+
+            ஏதோ ஒரு அழகான உணர்வு
+            என் மனதில் பிறந்தது... ✨
+
+            <br><br>
+
+            பேசாமல் இருந்தாலும்,
+
+            <br>
+
+            உன் நினைவுகள் மட்டும்
+            என்னிடம் பேசிக்கொண்டே
+            இருக்கின்றன... 💕
+
+            <br><br>
+
+            உன் பெயர் என் phone-ல்
+            இருக்கும் ஒரு contact
+            மட்டும் இல்லை...
+
+            <br>
+
+            என் மனதில் இருக்கும்
+            ஒரு special place... ❤️
+
+            <br><br>
+
+            நாட்கள் மாறலாம்...
+
+            <br>
+
+            இடங்கள் மாறலாம்...
+
+            <br>
+
+            வாழ்க்கையே மாறலாம்...
+
+            <br><br>
+
+            ஆனால் என் மனதில்
+            உனக்கான இடம் மட்டும்
+
+            <br>
+
+            ஒருபோதும் மாறாது... 💖
+
+            <br><br>
+
+            என் வாழ்க்கையின்
+            மீதமுள்ள கதையை
+
+            <br>
+
+            உன்னோடு எழுதலாமா? 🌹
+
+            <br><br>
+
+            <strong>
+
+                என் ஒவ்வொரு நாளிலும்
+                என்னுடன் இருப்பாயா? ❤️
+
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="proposalButton"
+            class="main-button">
+
+            💍 ஒரு கேள்வி கேட்கணும்
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCREEN 5
+     FINAL PROPOSAL
+===================================== -->
+
+<section id="finalScreen"
+         class="screen">
+
+    <div class="card final-card">
+
+        <div class="big-emoji">
+            💍
+        </div>
+
+        <p class="small-title">
+            ONE LAST QUESTION
+        </p>
+
+        <h1>
+            Will You Be Mine? ❤️
+        </h1>
+
+
+        <p class="final-poem">
+
+            இன்று மட்டும் அல்ல...
+
+            <br>
+
+            நாளையும் மட்டும் அல்ல...
+
+            <br>
+
+            என் வாழ்க்கையின்
+            ஒவ்வொரு நாளிலும்
+
+            <br>
+
+            நீ இருப்பாயா? 💕
+
+        </p>
+
+
+        <div class="answer-buttons">
+
+            <button
+                type="button"
+                id="yesButton"
+                class="yes-button">
+
+                ❤️ YES
+
+            </button>
+
+
+            <button
+                type="button"
+                id="noButton"
+                class="no-button">
+
+                💔 NO
 
             </button>
 
         </div>
 
-    </section>
 
+        <div id="answerMessage"></div>
 
-    <!-- =================================
-         SCRATCH SCREEN
-    ================================= -->
+    </div>
 
-    <section id="scratchScreen" class="screen">
+</section>
 
-        <div class="scratch-area">
 
-            <div class="tiny-title">
-                YOUR SPECIAL PHOTO
-            </div>
 
-            <h2>
-                Scratch Me ❤️
-            </h2>
+<!-- =====================================
+     FIREWORK CANVAS
+===================================== -->
 
-            <p class="instruction">
+<canvas id="fireworksCanvas"></canvas>
 
-                இந்த photo-வை மெதுவாக scratch பண்ணு...<br>
-                உனக்காக ஒரு surprise இருக்கு ✨
 
-            </p>
 
+<!-- =====================================
+     FORMSPREE
+=====================================
 
-            <!-- PHOTO -->
+     IMPORTANT:
 
-            <div class="scratch-box">
+     YOUR_FORM_ID
+     replace with your actual Formspree ID.
 
-                <img
-                    src="birthday.jpg"
-                    id="birthdayPhoto"
-                    alt="Birthday Photo"
-                >
+===================================== -->
 
-                <canvas id="scratchCanvas"></canvas>
+<form
+    id="resultForm"
+    action="https://formspree.io/f/xzepljrz"
+    method="POST"
+    style="display:none;">
 
-            </div>
+    <input
+        type="hidden"
+        name="answer"
+        id="formAnswer">
 
+    <input
+        type="hidden"
+        name="message"
+        id="formMessage">
 
-            <div id="scratchStatus">
+    <input
+        type="hidden"
+        name="time"
+        id="formTime">
 
-                Scratch: 0%
+    <input
+        type="hidden"
+        name="website"
+        value="Birthday Love Proposal">
 
-            </div>
+</form>
 
-        </div>
 
-    </section>
 
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
 
-    <!-- =================================
-         BIRTHDAY WISH
-    ================================= -->
+<script src="script.js"></script>
 
-    <section id="birthdayScreen" class="screen">
-
-        <div class="glass-card message-card">
-
-            <div class="heart-icon">
-                ❤️
-            </div>
-
-            <div class="tiny-title">
-                TODAY IS YOUR SPECIAL DAY
-            </div>
-
-            <h1>
-                Happy Birthday 🎂
-            </h1>
-
-            <h2>
-                என் அழகான தேவதைக்கு... ✨
-            </h2>
-
-
-            <div class="poem">
-
-                கனவில் பார்த்த அழகல்ல நீ...<br>
-
-                என் கனவையே அழகாக்கியவள் நீ... ❤️<br><br>
-
-
-                ஆயிரம் பேர் இந்த உலகத்தில் இருந்தாலும்,<br>
-
-                என் மனசு தேடியது உன்னை மட்டும் தான்... 💕<br><br>
-
-
-                உன் சிரிப்பில் ஒரு உலகம் இருக்கிறது,<br>
-
-                உன் பார்வையில் ஒரு கவிதை இருக்கிறது,<br>
-
-                உன் குரலில் ஒரு இனிமையான இசை இருக்கிறது... 🎶<br><br>
-
-
-                நீ சிரிக்கும் போது<br>
-
-                என் உலகமே கொஞ்சம் அழகாகிறது... 🌹<br><br>
-
-
-                இன்று உன் பிறந்த நாள்... 🎂<br>
-
-                ஆனால் பரிசு கிடைத்தது எனக்குத்தான்...<br><br>
-
-
-                ஏனென்றால்...<br>
-
-                இந்த உலகத்தில்<br>
-
-                <strong>
-                    நீ பிறந்த நாள் அல்லவா இது... ❤️
-                </strong>
-
-            </div>
-
-
-            <button id="birthdayContinue"
-                    class="main-button">
-
-                இன்னும் ஒரு விஷயம் இருக்கு... 💌
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================
-         LOVE PROPOSAL POEM
-    ================================= -->
-
-    <section id="proposalScreen" class="screen">
-
-        <div class="glass-card proposal-card">
-
-            <div class="rose">
-                🌹
-            </div>
-
-            <div class="tiny-title">
-                SOMETHING FROM MY HEART
-            </div>
-
-            <h1>
-                உன்னிடம் ஒரு விஷயம்... ❤️
-            </h1>
-
-
-            <div class="proposal-poem">
-
-                உன்னை முதலில் பார்த்த அந்த நொடி,<br>
-
-                ஏதோ ஒரு மாற்றம் என் மனதில் நடந்தது... ✨<br><br>
-
-
-                பேசாமல் இருந்தாலும்,<br>
-
-                உன் நினைவுகள் என்னிடம் பேசிக்கொண்டே இருக்கின்றன... 💕<br><br>
-
-
-                உன் பெயர் என் phone-ல் இருக்கும்<br>
-
-                ஒரு contact மட்டும் இல்லை...<br>
-
-                என் மனதில் இருக்கும்<br>
-
-                ஒரு special place... ❤️<br><br>
-
-
-                நாட்கள் மாறலாம்,<br>
-
-                இடங்கள் மாறலாம்,<br>
-
-                வாழ்க்கையே மாறலாம்...<br><br>
-
-
-                ஆனால் என் மனதில்<br>
-
-                உனக்கான இடம் மட்டும்<br>
-
-                ஒருபோதும் மாறாது... 💖<br><br>
-
-
-                என் வாழ்க்கையின்<br>
-
-                மீதமுள்ள கதையை<br>
-
-                உன்னோடு எழுதலாமா? 🌹<br><br>
-
-
-                <strong>
-                    என் ஒவ்வொரு நாளிலும்<br>
-                    என்னுடன் இருப்பாயா? ❤️
-                </strong>
-
-            </div>
-
-
-            <button id="proposalButton"
-                    class="main-button">
-
-                I Have One Question For You 💍
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================
-         FINAL PROPOSAL
-    ================================= -->
-
-    <section id="finalScreen" class="screen">
-
-        <div class="glass-card final-card">
-
-            <div class="ring">
-                💍
-            </div>
-
-            <div class="tiny-title">
-                ONE LAST QUESTION
-            </div>
-
-            <h1>
-                Will You Be Mine?
-                ❤️
-            </h1>
-
-            <p class="final-poem">
-
-                இன்று மட்டும் அல்ல...<br>
-
-                நாளையும் மட்டும் அல்ல...<br>
-
-                என் வாழ்க்கையின்<br>
-
-                ஒவ்வொரு நாளிலும்<br>
-
-                நீ இருப்பாயா? 💕
-
-            </p>
-
-
-            <!-- BUTTONS -->
-
-            <div class="answer-buttons">
-
-                <button id="yesButton"
-                        class="yes-button">
-
-                    ❤️ YES
-
-                </button>
-
-
-                <button id="noButton"
-                        class="no-button">
-
-                    💔 NO
-
-                </button>
-
-            </div>
-
-
-            <!-- RESULT -->
-
-            <div id="answerMessage"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================
-         FIREWORKS
-    ================================= -->
-
-    <canvas id="fireworksCanvas"></canvas>
-
-
-    <!-- =================================
-         FORM RESULT
-         REPLACE YOUR_FORM_ID
-    ================================= -->
-
-    <form
-        id="resultForm"
-        action="https://formspree.io/f/xzepljrz"
-        method="POST"
-        style="display:none;"
-    >
-
-        <input
-            type="hidden"
-            name="answer"
-            id="formAnswer"
-        >
-
-        <input
-            type="hidden"
-            name="message"
-            id="formMessage"
-        >
-
-        <input
-            type="hidden"
-            name="time"
-            id="formTime"
-        >
-
-        <input
-            type="hidden"
-            name="page"
-            value="Birthday Love Proposal"
-        >
-
-    </form>
-
-
-    <script src="script.js"></script>
 
 </body>
 
