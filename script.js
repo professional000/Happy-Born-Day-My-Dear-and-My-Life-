@@ -1,68 +1,45 @@
-/* =====================================
-   GET ELEMENTS
-===================================== */
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const startScreen =
-    document.getElementById(
-        "startScreen"
-    );
+    document.getElementById("startScreen");
 
 const scratchScreen =
-    document.getElementById(
-        "scratchScreen"
-    );
+    document.getElementById("scratchScreen");
 
 const birthdayScreen =
-    document.getElementById(
-        "birthdayScreen"
-    );
+    document.getElementById("birthdayScreen");
 
 const proposalScreen =
-    document.getElementById(
-        "proposalScreen"
-    );
+    document.getElementById("proposalScreen");
 
 const finalScreen =
-    document.getElementById(
-        "finalScreen"
-    );
+    document.getElementById("finalScreen");
 
 
 const openGiftButton =
-    document.getElementById(
-        "openGiftButton"
-    );
+    document.getElementById("openGiftButton");
 
 const birthdayContinue =
-    document.getElementById(
-        "birthdayContinue"
-    );
+    document.getElementById("birthdayContinue");
 
 const proposalButton =
-    document.getElementById(
-        "proposalButton"
-    );
+    document.getElementById("proposalButton");
 
 const yesButton =
-    document.getElementById(
-        "yesButton"
-    );
+    document.getElementById("yesButton");
 
 const noButton =
-    document.getElementById(
-        "noButton"
-    );
-
+    document.getElementById("noButton");
 
 const loveSong =
-    document.getElementById(
-        "loveSong"
-    );
+    document.getElementById("loveSong");
 
 
-/* =====================================
-   SCREEN FUNCTION
-===================================== */
+/* =========================================
+   SHOW SCREEN
+========================================= */
 
 function showScreen(screen) {
 
@@ -70,130 +47,89 @@ function showScreen(screen) {
         .querySelectorAll(".screen")
         .forEach(function(item) {
 
-            item.classList.remove(
-                "active"
-            );
+            item.classList.remove("active");
 
         });
 
+    screen.classList.add("active");
 
-    screen.classList.add(
-        "active"
-    );
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
+    window.scrollTo(0, 0);
 }
 
 
-/* =====================================
+/* =========================================
    OPEN YOUR GIFT
-===================================== */
+========================================= */
 
 openGiftButton.addEventListener(
     "click",
     function() {
 
-        console.log(
-            "Open Your Gift clicked"
-        );
+        console.log("Gift button clicked ❤️");
+
+        /* Open scratch screen */
+
+        showScreen(scratchScreen);
 
 
-        /*
-          Go to scratch screen
-        */
+        /* Start music */
 
-        showScreen(
-            scratchScreen
-        );
+        loveSong.volume = 0.45;
 
+        loveSong.play()
+            .then(function() {
 
-        /*
-          Start song
-        */
+                console.log(
+                    "Love song started ❤️"
+                );
 
-        loveSong.volume =
-            0.45;
+            })
+            .catch(function(error) {
 
+                console.log(
+                    "Music could not start:",
+                    error
+                );
 
-        const musicPromise =
-            loveSong.play();
-
-
-        if (
-            musicPromise !== undefined
-        ) {
-
-            musicPromise
-                .then(function() {
-
-                    console.log(
-                        "Music started ❤️"
-                    );
-
-                })
-                .catch(function(error) {
-
-                    console.log(
-                        "Music blocked:",
-                        error
-                    );
-
-                });
-
-        }
+            });
 
 
-        /*
-          Setup scratch card
-        */
+        /* Setup scratch */
 
-        setTimeout(
-            setupScratch,
-            100
-        );
+        setTimeout(function() {
+
+            setupScratch();
+
+        }, 150);
 
     }
 );
 
 
-/* =====================================
-   SCRATCH ELEMENTS
-===================================== */
+/* =========================================
+   SCRATCH
+========================================= */
 
 const scratchCanvas =
-    document.getElementById(
-        "scratchCanvas"
-    );
+    document.getElementById("scratchCanvas");
 
 const scratchCtx =
-    scratchCanvas.getContext(
-        "2d"
-    );
+    scratchCanvas.getContext("2d");
 
 const scratchStatus =
-    document.getElementById(
-        "scratchStatus"
-    );
+    document.getElementById("scratchStatus");
 
 
-let isDrawing =
-    false;
+let isDrawing = false;
 
-let scratchComplete =
-    false;
+let scratchComplete = false;
 
-let scratchStarted =
-    false;
+let scratchStarted = false;
 
 
-/* =====================================
+/* =========================================
    SETUP SCRATCH
-===================================== */
+========================================= */
 
 function setupScratch() {
 
@@ -206,17 +142,12 @@ function setupScratch() {
         box.height === 0
     ) {
 
-        console.log(
-            "Scratch canvas not ready"
-        );
-
         setTimeout(
             setupScratch,
             200
         );
 
         return;
-
     }
 
 
@@ -227,13 +158,11 @@ function setupScratch() {
         Math.floor(box.height);
 
 
-    /*
-      Scratch cover
-    */
-
     scratchCtx.globalCompositeOperation =
         "source-over";
 
+
+    /* Scratch cover */
 
     const gradient =
         scratchCtx.createLinearGradient(
@@ -249,12 +178,10 @@ function setupScratch() {
         "#ffe0ef"
     );
 
-
     gradient.addColorStop(
         0.5,
         "#ff70b5"
     );
-
 
     gradient.addColorStop(
         1,
@@ -274,17 +201,13 @@ function setupScratch() {
     );
 
 
-    /*
-      Main text
-    */
+    /* Main text */
 
     scratchCtx.fillStyle =
         "#ffffff";
 
-
     scratchCtx.textAlign =
         "center";
-
 
     scratchCtx.textBaseline =
         "middle";
@@ -312,23 +235,18 @@ function setupScratch() {
     );
 
 
-    scratchComplete =
-        false;
+    scratchComplete = false;
 
-
-    scratchStarted =
-        false;
-
+    scratchStarted = false;
 
     scratchStatus.innerText =
         "Scratch: 0%";
-
 }
 
 
-/* =====================================
-   GET POINTER POSITION
-===================================== */
+/* =========================================
+   POSITION
+========================================= */
 
 function getPosition(event) {
 
@@ -337,6 +255,7 @@ function getPosition(event) {
 
 
     let clientX;
+
     let clientY;
 
 
@@ -351,14 +270,15 @@ function getPosition(event) {
         clientY =
             event.touches[0].clientY;
 
-    } else {
+    }
+
+    else {
 
         clientX =
             event.clientX;
 
         clientY =
             event.clientY;
-
     }
 
 
@@ -371,15 +291,13 @@ function getPosition(event) {
         y:
             clientY -
             rect.top
-
     };
-
 }
 
 
-/* =====================================
-   SCRATCH FUNCTION
-===================================== */
+/* =========================================
+   SCRATCH
+========================================= */
 
 function scratch(event) {
 
@@ -389,15 +307,13 @@ function scratch(event) {
     ) {
 
         return;
-
     }
 
 
     event.preventDefault();
 
 
-    scratchStarted =
-        true;
+    scratchStarted = true;
 
 
     const position =
@@ -424,19 +340,14 @@ function scratch(event) {
 
 
     calculateScratch();
-
 }
 
 
-/* =====================================
+/* =========================================
    CALCULATE SCRATCH
-===================================== */
+========================================= */
 
 function calculateScratch() {
-
-    /*
-      Read canvas pixels
-    */
 
     const imageData =
         scratchCtx.getImageData(
@@ -451,12 +362,11 @@ function calculateScratch() {
         imageData.data;
 
 
-    let transparent =
-        0;
+    let transparent = 0;
 
 
     /*
-      Sample pixels
+      Sample every 16th pixel
     */
 
     for (
@@ -470,9 +380,7 @@ function calculateScratch() {
         ) {
 
             transparent++;
-
         }
-
     }
 
 
@@ -482,10 +390,7 @@ function calculateScratch() {
 
     const percentage =
         Math.floor(
-            (
-                transparent /
-                total
-            ) * 100
+            (transparent / total) * 100
         );
 
 
@@ -496,7 +401,7 @@ function calculateScratch() {
 
 
     /*
-      Unlock at 50%
+      Complete at 50%
     */
 
     if (
@@ -504,27 +409,24 @@ function calculateScratch() {
         !scratchComplete
     ) {
 
-        scratchComplete =
-            true;
-
+        scratchComplete = true;
 
         finishScratch();
-
     }
-
 }
 
 
-/* =====================================
-   MOUSE EVENTS
-===================================== */
+/* =========================================
+   MOUSE
+========================================= */
 
 scratchCanvas.addEventListener(
     "mousedown",
-    function() {
+    function(event) {
 
-        isDrawing =
-            true;
+        event.preventDefault();
+
+        isDrawing = true;
 
     }
 );
@@ -534,8 +436,7 @@ scratchCanvas.addEventListener(
     "mouseup",
     function() {
 
-        isDrawing =
-            false;
+        isDrawing = false;
 
     }
 );
@@ -545,8 +446,7 @@ scratchCanvas.addEventListener(
     "mouseleave",
     function() {
 
-        isDrawing =
-            false;
+        isDrawing = false;
 
     }
 );
@@ -558,9 +458,9 @@ scratchCanvas.addEventListener(
 );
 
 
-/* =====================================
-   TOUCH EVENTS
-===================================== */
+/* =========================================
+   TOUCH
+========================================= */
 
 scratchCanvas.addEventListener(
     "touchstart",
@@ -568,8 +468,7 @@ scratchCanvas.addEventListener(
 
         event.preventDefault();
 
-        isDrawing =
-            true;
+        isDrawing = true;
 
     },
     {
@@ -593,8 +492,7 @@ scratchCanvas.addEventListener(
 
         event.preventDefault();
 
-        isDrawing =
-            false;
+        isDrawing = false;
 
     },
     {
@@ -603,9 +501,9 @@ scratchCanvas.addEventListener(
 );
 
 
-/* =====================================
+/* =========================================
    FINISH SCRATCH
-===================================== */
+========================================= */
 
 function finishScratch() {
 
@@ -614,9 +512,7 @@ function finishScratch() {
     );
 
 
-    /*
-      Remove cover
-    */
+    /* Remove scratch layer */
 
     scratchCtx.clearRect(
         0,
@@ -630,54 +526,57 @@ function finishScratch() {
         "❤️ SURPRISE UNLOCKED ❤️";
 
 
-    /*
-      Party sound
-    */
+    /* Party pop sound */
 
     partySound();
 
 
-    /*
-      Firework sound
-    */
+    /* Firework sounds */
 
     setTimeout(
         fireworkSound,
         150
     );
 
+    setTimeout(
+        fireworkSound,
+        600
+    );
 
-    /*
-      Fireworks
-    */
+    setTimeout(
+        fireworkSound,
+        1100
+    );
+
+
+    /* Fireworks */
 
     launchFireworks();
 
-
-    /*
-      More fireworks
-    */
+    setTimeout(
+        launchFireworks,
+        400
+    );
 
     setTimeout(
         launchFireworks,
-        500
+        800
     );
-
 
     setTimeout(
         launchFireworks,
-        1000
+        1200
     );
 
 
-    setTimeout(
-        launchFireworks,
-        1500
-    );
+    /* Heart explosion */
+
+    heartBurst();
 
 
     /*
-      Birthday screen
+      After fireworks,
+      show birthday
     */
 
     setTimeout(
@@ -688,15 +587,14 @@ function finishScratch() {
             );
 
         },
-        4500
+        4200
     );
-
 }
 
 
-/* =====================================
+/* =========================================
    PARTY POP SOUND
-===================================== */
+========================================= */
 
 function partySound() {
 
@@ -724,44 +622,38 @@ function partySound() {
 
 
         oscillator.frequency.setValueAtTime(
-            220,
+            250,
             audio.currentTime
         );
 
 
         oscillator.frequency.exponentialRampToValueAtTime(
-            35,
-            audio.currentTime + 0.4
+            40,
+            audio.currentTime + 0.35
         );
 
 
         gain.gain.setValueAtTime(
-            0.45,
+            0.5,
             audio.currentTime
         );
 
 
         gain.gain.exponentialRampToValueAtTime(
             0.01,
-            audio.currentTime + 0.4
+            audio.currentTime + 0.35
         );
 
 
-        oscillator.connect(
-            gain
-        );
+        oscillator.connect(gain);
 
-
-        gain.connect(
-            audio.destination
-        );
+        gain.connect(audio.destination);
 
 
         oscillator.start();
 
-
         oscillator.stop(
-            audio.currentTime + 0.4
+            audio.currentTime + 0.35
         );
 
     }
@@ -769,18 +661,17 @@ function partySound() {
     catch(error) {
 
         console.log(
-            "Party sound error",
+            "Party sound error:",
             error
         );
 
     }
-
 }
 
 
-/* =====================================
+/* =========================================
    FIREWORK SOUND
-===================================== */
+========================================= */
 
 function fireworkSound() {
 
@@ -795,23 +686,19 @@ function fireworkSound() {
             new AudioContext();
 
 
-        const duration =
-            0.6;
+        const duration = 0.55;
 
 
         const buffer =
             audio.createBuffer(
                 1,
-                audio.sampleRate *
-                duration,
+                audio.sampleRate * duration,
                 audio.sampleRate
             );
 
 
         const data =
-            buffer.getChannelData(
-                0
-            );
+            buffer.getChannelData(0);
 
 
         for (
@@ -821,10 +708,7 @@ function fireworkSound() {
         ) {
 
             data[i] =
-                Math.random() *
-                2 -
-                1;
-
+                Math.random() * 2 - 1;
         }
 
 
@@ -836,31 +720,24 @@ function fireworkSound() {
             audio.createGain();
 
 
-        source.buffer =
-            buffer;
+        source.buffer = buffer;
 
 
         gain.gain.setValueAtTime(
-            0.5,
+            0.45,
             audio.currentTime
         );
 
 
         gain.gain.exponentialRampToValueAtTime(
             0.01,
-            audio.currentTime +
-            duration
+            audio.currentTime + duration
         );
 
 
-        source.connect(
-            gain
-        );
+        source.connect(gain);
 
-
-        gain.connect(
-            audio.destination
-        );
+        gain.connect(audio.destination);
 
 
         source.start();
@@ -870,18 +747,17 @@ function fireworkSound() {
     catch(error) {
 
         console.log(
-            "Firework sound error",
+            "Firework sound error:",
             error
         );
 
     }
-
 }
 
 
-/* =====================================
+/* =========================================
    FIREWORK CANVAS
-===================================== */
+========================================= */
 
 const fireworksCanvas =
     document.getElementById(
@@ -890,18 +766,15 @@ const fireworksCanvas =
 
 
 const fireworksCtx =
-    fireworksCanvas.getContext(
-        "2d"
-    );
+    fireworksCanvas.getContext("2d");
 
 
-let particles =
-    [];
+let particles = [];
 
 
-/* =====================================
+/* =========================================
    RESIZE
-===================================== */
+========================================= */
 
 function resizeCanvas() {
 
@@ -910,7 +783,6 @@ function resizeCanvas() {
 
     fireworksCanvas.height =
         window.innerHeight;
-
 }
 
 
@@ -923,14 +795,14 @@ window.addEventListener(
 );
 
 
-/* =====================================
+/* =========================================
    CREATE HEART FIREWORK
-===================================== */
+========================================= */
 
 function createFirework(
     x,
     y,
-    amount = 70
+    amount = 65
 ) {
 
     const hearts = [
@@ -960,17 +832,14 @@ function createFirework(
 
         const speed =
             Math.random() *
-            6 +
-            2;
+            6 + 2;
 
 
         particles.push({
 
-            x:
-                x,
+            x: x,
 
-            y:
-                y,
+            y: y,
 
             vx:
                 Math.cos(angle) *
@@ -980,16 +849,13 @@ function createFirework(
                 Math.sin(angle) *
                 speed,
 
-            gravity:
-                0.08,
+            gravity: 0.08,
 
-            life:
-                100,
+            life: 100,
 
             size:
                 Math.random() *
-                12 +
-                14,
+                12 + 14,
 
             emoji:
                 hearts[
@@ -1000,15 +866,13 @@ function createFirework(
                 ]
 
         });
-
     }
-
 }
 
 
-/* =====================================
-   ANIMATE
-===================================== */
+/* =========================================
+   ANIMATE FIREWORKS
+========================================= */
 
 function animateFireworks() {
 
@@ -1045,8 +909,7 @@ function animateFireworks() {
                 particle.gravity;
 
 
-            particle.life -=
-                1;
+            particle.life -= 1;
 
 
             fireworksCtx.globalAlpha =
@@ -1068,8 +931,7 @@ function animateFireworks() {
     );
 
 
-    fireworksCtx.globalAlpha =
-        1;
+    fireworksCtx.globalAlpha = 1;
 
 
     if (
@@ -1086,15 +948,13 @@ function animateFireworks() {
 
         fireworksCanvas.style.display =
             "none";
-
     }
-
 }
 
 
-/* =====================================
+/* =========================================
    LAUNCH FIREWORKS
-===================================== */
+========================================= */
 
 function launchFireworks() {
 
@@ -1103,31 +963,186 @@ function launchFireworks() {
 
 
     createFirework(
-        window.innerWidth * 0.2,
-        window.innerHeight * 0.3
+        window.innerWidth * 0.20,
+        window.innerHeight * 0.30
     );
 
 
     createFirework(
-        window.innerWidth * 0.5,
-        window.innerHeight * 0.2
+        window.innerWidth * 0.50,
+        window.innerHeight * 0.20
     );
 
 
     createFirework(
-        window.innerWidth * 0.8,
-        window.innerHeight * 0.3
+        window.innerWidth * 0.80,
+        window.innerHeight * 0.30
     );
 
 
     animateFireworks();
-
 }
 
 
-/* =====================================
+/* =========================================
+   HEART BURST
+========================================= */
+
+function heartBurst() {
+
+    const hearts = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💝",
+        "💘"
+
+    ];
+
+
+    const container =
+        document.getElementById(
+            "heartsContainer"
+        );
+
+
+    for (
+        let i = 0;
+        i < 45;
+        i++
+    ) {
+
+        const heart =
+            document.createElement("div");
+
+
+        heart.className =
+            "floating-heart";
+
+
+        heart.innerText =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
+
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+
+        heart.style.fontSize =
+            Math.random() * 20 +
+            18 +
+            "px";
+
+
+        heart.style.animationDuration =
+            Math.random() * 3 +
+            3 +
+            "s";
+
+
+        container.appendChild(
+            heart
+        );
+
+
+        setTimeout(
+            function() {
+
+                heart.remove();
+
+            },
+            7000
+        );
+    }
+}
+
+
+/* =========================================
+   CONTINUOUS FLOATING HEARTS
+========================================= */
+
+function createFloatingHeart() {
+
+    const container =
+        document.getElementById(
+            "heartsContainer"
+        );
+
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "floating-heart";
+
+
+    const hearts = [
+        "❤️",
+        "💖",
+        "💕",
+        "💗"
+    ];
+
+
+    heart.innerText =
+        hearts[
+            Math.floor(
+                Math.random() *
+                hearts.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+
+    heart.style.fontSize =
+        Math.random() * 15 +
+        15 +
+        "px";
+
+
+    heart.style.animationDuration =
+        Math.random() * 5 +
+        5 +
+        "s";
+
+
+    container.appendChild(
+        heart
+    );
+
+
+    setTimeout(
+        function() {
+
+            heart.remove();
+
+        },
+        11000
+    );
+}
+
+
+setInterval(
+    createFloatingHeart,
+    900
+);
+
+
+/* =========================================
    BIRTHDAY → PROPOSAL
-===================================== */
+========================================= */
 
 birthdayContinue.addEventListener(
     "click",
@@ -1141,9 +1156,9 @@ birthdayContinue.addEventListener(
 );
 
 
-/* =====================================
+/* =========================================
    PROPOSAL → FINAL
-===================================== */
+========================================= */
 
 proposalButton.addEventListener(
     "click",
@@ -1157,9 +1172,9 @@ proposalButton.addEventListener(
 );
 
 
-/* =====================================
-   FORMSPREE RESULT
-===================================== */
+/* =========================================
+   FORMSPREE
+========================================= */
 
 function sendResult(
     answer,
@@ -1208,8 +1223,7 @@ function sendResult(
         form.action,
         {
 
-            method:
-                "POST",
+            method: "POST",
 
             body:
                 new FormData(form),
@@ -1231,7 +1245,7 @@ function sendResult(
             ) {
 
                 console.log(
-                    "Email sent successfully ❤️"
+                    "Formspree email sent ❤️"
                 );
 
             }
@@ -1256,31 +1270,22 @@ function sendResult(
 
         }
     );
-
 }
 
 
-/* =====================================
+/* =========================================
    YES BUTTON
-===================================== */
+========================================= */
 
 yesButton.addEventListener(
     "click",
     function() {
-
-        /*
-          Send email
-        */
 
         sendResult(
             "❤️ YES",
             "She accepted the love proposal! ❤️💍"
         );
 
-
-        /*
-          Message
-        */
 
         document.getElementById(
             "answerMessage"
@@ -1300,10 +1305,6 @@ yesButton.addEventListener(
 
             "நீ தான்... 💍💕";
 
-
-        /*
-          Celebration
-        */
 
         launchFireworks();
 
@@ -1326,27 +1327,19 @@ yesButton.addEventListener(
         );
 
 
-        /*
-          Hearts
-        */
-
         heartBurst();
 
     }
 );
 
 
-/* =====================================
+/* =========================================
    NO BUTTON
-===================================== */
+========================================= */
 
 noButton.addEventListener(
     "click",
     function() {
-
-        /*
-          Send email
-        */
 
         sendResult(
             "💔 NO",
@@ -1354,82 +1347,5 @@ noButton.addEventListener(
         );
 
 
-        /*
-          Message
-        */
-
         document.getElementById(
-            "answerMessage"
-        ).innerHTML =
-
-            "🥺 Are you sure?" +
-
-            "<br><br>" +
-
-            "ஒருமுறை நன்றாக யோசித்துப் பாரு... ❤️";
-
-
-        heartBurst();
-
-    }
-);
-
-
-/* =====================================
-   HEART BURST
-===================================== */
-
-function heartBurst() {
-
-    const hearts = [
-
-        "❤️",
-        "💖",
-        "💕",
-        "💗",
-        "💓",
-        "💝"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < 30;
-        i++
-    ) {
-
-        const heart =
-            document.createElement(
-                "div"
-            );
-
-
-        heart.className =
-            "floating-heart";
-
-
-        heart.innerText =
-            hearts[
-                Math.floor(
-                    Math.random() *
-                    hearts.length
-                )
-            ];
-
-
-        heart.style.left =
-            Math.random() *
-            100 +
-            "%";
-
-
-        heart.style.fontSize =
-            Math.random() *
-            20 +
-            18 +
-            "px";
-
-
-        heart.style.animationDuration =
-    
+         
