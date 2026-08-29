@@ -1,0 +1,706 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+
+    color: white;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            #ffb7dc,
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            #7d285f,
+            transparent 40%
+        ),
+
+        linear-gradient(
+            135deg,
+            #ff5ca8,
+            #541447
+        );
+
+}
+
+
+/* =================================
+   SCREEN
+================================= */
+
+.screen {
+
+    min-height: 100vh;
+    width: 100%;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+}
+
+
+.screen.active {
+
+    display: flex;
+
+}
+
+
+/* =================================
+   START
+================================= */
+
+.start-box {
+
+    width: min(92vw, 650px);
+
+    padding: 45px 25px;
+
+    border-radius: 35px;
+
+    background:
+        rgba(255,255,255,0.14);
+
+    backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.35);
+
+    animation:
+        appear 1.2s ease;
+
+}
+
+
+.cake {
+
+    font-size: 90px;
+
+    animation:
+        floating 2s infinite ease-in-out;
+
+}
+
+
+.small-title {
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.8;
+
+    margin-bottom: 10px;
+
+}
+
+
+h1 {
+
+    font-size:
+        clamp(38px, 9vw, 70px);
+
+    line-height: 1.15;
+
+    margin: 15px 0;
+
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,0.3);
+
+}
+
+
+h2 {
+
+    font-size:
+        clamp(22px, 5vw, 32px);
+
+    margin: 15px 0;
+
+}
+
+
+.start-text {
+
+    font-size: 19px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =================================
+   BUTTON
+================================= */
+
+.main-button {
+
+    margin-top: 30px;
+
+    padding:
+        16px 30px;
+
+    border: none;
+
+    border-radius: 100px;
+
+    background: white;
+
+    color: #b51c6c;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.3);
+
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
+}
+
+
+.main-button:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,0.4);
+
+}
+
+
+.main-button:active {
+
+    transform:
+        scale(0.96);
+
+}
+
+
+/* =================================
+   SCRATCH
+================================= */
+
+#scratchScreen {
+
+    flex-direction: column;
+
+}
+
+
+.scratch-content {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.instruction {
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+
+}
+
+
+.scratch-wrapper {
+
+    position: relative;
+
+    width: min(88vw, 430px);
+
+    height: min(120vw, 550px);
+
+    max-height: 68vh;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background: #222;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.5);
+
+}
+
+
+.birthday-photo {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+#scratchCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    touch-action: none;
+
+    cursor: crosshair;
+
+}
+
+
+#scratchPercent {
+
+    margin-top: 18px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+}
+
+
+/* =================================
+   CARDS
+================================= */
+
+.message-card,
+.proposal-card,
+.final-card {
+
+    width: min(94vw, 680px);
+
+    padding: 40px 25px;
+
+    border-radius: 35px;
+
+    background:
+        rgba(255,255,255,0.13);
+
+    backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,0.4);
+
+    animation:
+        appear 1.2s ease;
+
+}
+
+
+.big-heart {
+
+    font-size: 75px;
+
+    animation:
+        heartbeat 1.1s infinite;
+
+}
+
+
+.rose {
+
+    font-size: 80px;
+
+    animation:
+        floating 2s infinite;
+
+}
+
+
+.ring {
+
+    font-size: 90px;
+
+    animation:
+        heartbeat 1.1s infinite;
+
+}
+
+
+/* =================================
+   POEMS
+================================= */
+
+.poem,
+.proposal-poem {
+
+    margin-top: 25px;
+
+    font-size: 19px;
+
+    line-height: 2;
+
+}
+
+
+.poem strong,
+.proposal-poem strong {
+
+    font-size: 21px;
+
+}
+
+
+/* =================================
+   FINAL
+================================= */
+
+.final-text {
+
+    font-size: 19px;
+
+    line-height: 2;
+
+    margin-top: 15px;
+
+}
+
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 30px;
+
+    min-height: 70px;
+
+}
+
+
+.buttons button {
+
+    border: none;
+
+    border-radius: 100px;
+
+    padding: 15px 30px;
+
+    min-width: 130px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.yes {
+
+    background: #ff2d91;
+
+    color: white;
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,45,145,0.5);
+
+}
+
+
+.yes:hover {
+
+    transform: scale(1.12);
+
+}
+
+
+.no {
+
+    background: white;
+
+    color: #555;
+
+}
+
+
+#answerMessage {
+
+    margin-top: 30px;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    line-height: 1.7;
+
+}
+
+
+/* =================================
+   FLOATING HEARTS
+================================= */
+
+#hearts-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+}
+
+
+.floating-heart {
+
+    position: absolute;
+
+    bottom: -60px;
+
+    animation:
+        riseHeart linear forwards;
+
+    opacity: 0.75;
+
+}
+
+
+@keyframes riseHeart {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-115vh)
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =================================
+   FIREWORK
+================================= */
+
+#fireworksCanvas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    display: none;
+
+}
+
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.7)
+            translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-15px);
+
+    }
+
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+
+        padding: 15px;
+
+    }
+
+    .start-box,
+    .message-card,
+    .proposal-card,
+    .final-card {
+
+        padding:
+            30px 18px;
+
+    }
+
+    .poem,
+    .proposal-poem {
+
+        font-size: 17px;
+
+        line-height: 1.9;
+
+    }
+
+    .poem strong,
+    .proposal-poem strong {
+
+        font-size: 18px;
+
+    }
+
+    .buttons {
+
+        gap: 12px;
+
+    }
+
+    .buttons button {
+
+        min-width: 120px;
+
+        padding:
+            14px 20px;
+
+    }
+
+}
