@@ -4,13 +4,11 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
     width: 100%;
     min-height: 100%;
 }
-
 
 body {
 
@@ -42,13 +40,12 @@ body {
             #ff69ad,
             #65154e
         );
-
 }
 
 
-/* =====================================
+/* ==============================
    SCREEN
-===================================== */
+============================== */
 
 .screen {
 
@@ -69,50 +66,31 @@ body {
     position: relative;
 
     z-index: 5;
-
 }
-
 
 .screen.active {
-
     display: flex;
-
 }
 
 
-/* =====================================
+/* ==============================
    CARD
-===================================== */
+============================== */
 
 .card {
 
-    width: min(
-        94vw,
-        680px
-    );
+    width: min(94vw, 680px);
 
-    padding:
-        40px 25px;
+    padding: 40px 25px;
 
-    border-radius:
-        35px;
+    border-radius: 35px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.14
-        );
+        rgba(255,255,255,0.14);
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.3
-        );
+        rgba(255,255,255,0.3);
 
     backdrop-filter:
         blur(20px);
@@ -122,45 +100,34 @@ body {
 
     box-shadow:
         0 30px 80px
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        );
+        rgba(0,0,0,0.35);
 
     animation:
-        cardIn
-        0.8s
-        ease;
-
+        cardIn 0.8s ease;
 }
 
 
-/* =====================================
+/* ==============================
    EMOJI
-===================================== */
+============================== */
 
 .big-emoji {
 
-    font-size:
-        85px;
+    font-size: 85px;
 
-    margin-bottom:
-        15px;
+    margin-bottom: 15px;
 
     animation:
         floatEmoji
         2s
         ease-in-out
         infinite;
-
 }
 
 
-/* =====================================
+/* ==============================
    TEXT
-===================================== */
+============================== */
 
 .small-title {
 
@@ -168,535 +135,370 @@ body {
         Arial,
         sans-serif;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    letter-spacing:
-        4px;
+    letter-spacing: 4px;
 
-    opacity:
-        0.9;
+    opacity: 0.9;
 
-    margin-bottom:
-        12px;
-
+    margin-bottom: 12px;
 }
-
 
 h1 {
 
     font-size:
-        clamp(
-            38px,
-            9vw,
-            65px
-        );
+        clamp(38px, 9vw, 65px);
 
-    line-height:
-        1.15;
+    line-height: 1.15;
 
-    margin:
-        15px 0;
-
+    margin: 15px 0;
 }
-
 
 h2 {
 
     font-size:
-        clamp(
-            23px,
-            5vw,
-            32px
-        );
+        clamp(23px, 5vw, 32px);
 
-    margin:
-        15px 0;
-
+    margin: 15px 0;
 }
-
 
 .intro-text {
 
-    font-size:
-        18px;
+    font-size: 18px;
 
-    line-height:
-        1.8;
-
+    line-height: 1.8;
 }
-
 
 .instruction {
 
-    font-size:
-        17px;
+    font-size: 17px;
 
-    line-height:
-        1.7;
+    line-height: 1.7;
 
-    margin-bottom:
-        20px;
-
+    margin-bottom: 20px;
 }
 
 
-/* =====================================
+/* ==============================
    BUTTON
-===================================== */
+============================== */
 
 .main-button {
 
-    border:
-        none;
+    border: none;
 
-    outline:
-        none;
+    outline: none;
 
-    padding:
-        16px 30px;
+    padding: 16px 30px;
 
-    margin-top:
-        30px;
+    margin-top: 30px;
 
-    border-radius:
-        100px;
+    border-radius: 100px;
 
-    background:
-        white;
+    background: white;
 
-    color:
-        #b01868;
+    color: #b01868;
 
-    font-size:
-        17px;
+    font-size: 17px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     box-shadow:
         0 12px 35px
-        rgba(
-            0,
-            0,
-            0,
-            0.3
-        );
+        rgba(0,0,0,0.3);
 
     transition:
-        transform
-        0.25s
-        ease;
-
+        transform 0.25s ease;
 }
-
 
 .main-button:hover {
 
     transform:
         translateY(-4px)
         scale(1.03);
-
 }
-
 
 .main-button:active {
 
     transform:
         scale(0.95);
-
 }
 
 
-/* =====================================
+/* ==============================
    SCRATCH
-===================================== */
+============================== */
 
 .scratch-wrapper {
 
-    width:
-        100%;
+    width: 100%;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    align-items:
-        center;
-
+    align-items: center;
 }
-
 
 .scratch-box {
 
     width:
-        min(
-            88vw,
-            430px
-        );
+        min(88vw, 430px);
 
     height:
-        min(
-            120vw,
-            550px
-        );
+        min(120vw, 550px);
 
-    max-height:
-        67vh;
+    max-height: 67vh;
 
-    position:
-        relative;
+    position: relative;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    border-radius:
-        28px;
+    border-radius: 28px;
 
-    background:
-        #222;
+    background: #222;
 
     box-shadow:
         0 25px 70px
-        rgba(
-            0,
-            0,
-            0,
-            0.5
-        );
-
+        rgba(0,0,0,0.5);
 }
-
 
 #birthdayPhoto {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100%;
+    height: 100%;
 
-    object-fit:
-        cover;
-
+    object-fit: cover;
 }
-
 
 #scratchCanvas {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100%;
+    height: 100%;
 
-    touch-action:
-        none;
+    touch-action: none;
 
-    cursor:
-        crosshair;
-
+    cursor: crosshair;
 }
-
 
 #scratchStatus {
 
-    margin-top:
-        18px;
+    margin-top: 18px;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
-    font-weight:
-        bold;
-
+    font-weight: bold;
 }
 
 
-/* =====================================
+/* ==============================
    POEMS
-===================================== */
+============================== */
 
 .poem,
 .proposal-poem {
 
-    margin-top:
-        25px;
+    margin-top: 25px;
 
-    font-size:
-        19px;
+    font-size: 19px;
 
-    line-height:
-        2;
-
+    line-height: 2;
 }
-
 
 .poem strong,
 .proposal-poem strong {
 
-    font-size:
-        21px;
-
+    font-size: 21px;
 }
 
 
-/* =====================================
+/* ==============================
    FINAL
-===================================== */
+============================== */
 
 .final-card {
 
-    max-width:
-        650px;
-
+    max-width: 650px;
 }
-
 
 .final-poem {
 
-    font-size:
-        20px;
+    font-size: 20px;
 
-    line-height:
-        2;
+    line-height: 2;
 
-    margin-top:
-        20px;
-
+    margin-top: 20px;
 }
 
 
-/* =====================================
+/* ==============================
    YES / NO
-===================================== */
+============================== */
 
 .answer-buttons {
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        18px;
+    gap: 18px;
 
-    margin-top:
-        30px;
-
+    margin-top: 30px;
 }
-
 
 .answer-buttons button {
 
-    border:
-        none;
+    border: none;
 
-    padding:
-        15px 30px;
+    padding: 15px 30px;
 
-    min-width:
-        130px;
+    min-width: 130px;
 
-    border-radius:
-        100px;
+    border-radius: 100px;
 
-    font-size:
-        17px;
+    font-size: 17px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    transition:
-        0.3s;
-
+    transition: 0.3s;
 }
-
 
 .yes-button {
 
-    background:
-        #ff248e;
+    background: #ff248e;
 
-    color:
-        white;
+    color: white;
 
     box-shadow:
         0 10px 30px
-        rgba(
-            255,
-            36,
-            142,
-            0.5
-        );
-
+        rgba(255,36,142,0.5);
 }
-
 
 .yes-button:hover {
 
-    transform:
-        scale(1.12);
-
+    transform: scale(1.12);
 }
-
 
 .no-button {
 
-    background:
-        white;
+    background: white;
 
-    color:
-        #555;
-
+    color: #555;
 }
 
+.no-button:hover {
+
+    transform: scale(0.95);
+}
 
 #answerMessage {
 
-    margin-top:
-        30px;
+    margin-top: 30px;
 
-    font-size:
-        22px;
+    font-size: 22px;
 
-    line-height:
-        1.8;
+    line-height: 1.8;
 
-    font-weight:
-        bold;
-
+    font-weight: bold;
 }
 
 
-/* =====================================
+/* ==============================
    FLOATING HEARTS
-===================================== */
+============================== */
 
 #heartsContainer {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
-    z-index:
-        2;
-
+    z-index: 2;
 }
-
 
 .floating-heart {
 
-    position:
-        absolute;
+    position: absolute;
 
-    bottom:
-        -50px;
+    bottom: -50px;
 
     animation:
         heartUp
         linear
         forwards;
 
-    opacity:
-        0.8;
+    opacity: 0.8;
 
+    pointer-events: none;
 }
 
 
-/* =====================================
-   FIREWORKS
-===================================== */
+/* ==============================
+   FIREWORK
+============================== */
 
 #fireworksCanvas {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100%;
+    height: 100%;
 
-    z-index:
-        100;
+    z-index: 100;
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
-    display:
-        none;
-
+    display: none;
 }
 
 
-/* =====================================
+/* ==============================
    ANIMATIONS
-===================================== */
+============================== */
 
 @keyframes cardIn {
 
     from {
 
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
             scale(0.8)
             translateY(30px);
-
     }
 
     to {
 
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
             scale(1)
             translateY(0);
-
     }
-
 }
-
 
 @keyframes floatEmoji {
 
@@ -705,18 +507,14 @@ h2 {
 
         transform:
             translateY(0);
-
     }
 
     50% {
 
         transform:
             translateY(-12px);
-
     }
-
 }
-
 
 @keyframes heartUp {
 
@@ -725,7 +523,6 @@ h2 {
         transform:
             translateY(0)
             rotate(0deg);
-
     }
 
     to {
@@ -733,84 +530,56 @@ h2 {
         transform:
             translateY(-120vh)
             rotate(360deg);
-
     }
-
 }
 
 
-/* =====================================
+/* ==============================
    MOBILE
-===================================== */
+============================== */
 
-@media (
-    max-width: 600px
-) {
+@media (max-width: 600px) {
 
     .screen {
 
-        padding:
-            12px;
-
+        padding: 12px;
     }
-
 
     .card {
 
-        padding:
-            30px 18px;
+        padding: 30px 18px;
 
-        border-radius:
-            28px;
-
+        border-radius: 28px;
     }
-
 
     .big-emoji {
 
-        font-size:
-            70px;
-
+        font-size: 70px;
     }
-
 
     .poem,
     .proposal-poem {
 
-        font-size:
-            17px;
+        font-size: 17px;
 
-        line-height:
-            1.9;
-
+        line-height: 1.9;
     }
-
 
     .poem strong,
     .proposal-poem strong {
 
-        font-size:
-            18px;
-
+        font-size: 18px;
     }
-
 
     .answer-buttons {
 
-        gap:
-            10px;
-
+        gap: 10px;
     }
-
 
     .answer-buttons button {
 
-        min-width:
-            120px;
+        min-width: 120px;
 
-        padding:
-            14px 20px;
-
+        padding: 14px 20px;
     }
-
 }
