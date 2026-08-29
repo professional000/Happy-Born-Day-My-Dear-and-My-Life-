@@ -22,19 +22,16 @@ body {
     overflow-x: hidden;
 
     background:
-
         radial-gradient(
             circle at 10% 10%,
             rgba(255,255,255,0.35),
             transparent 25%
         ),
-
         radial-gradient(
             circle at 90% 90%,
             rgba(130,0,90,0.7),
             transparent 40%
         ),
-
         linear-gradient(
             135deg,
             #ff69ad,
@@ -43,9 +40,7 @@ body {
 }
 
 
-/* ==============================
-   SCREEN
-============================== */
+/* SCREEN */
 
 .screen {
 
@@ -73,9 +68,7 @@ body {
 }
 
 
-/* ==============================
-   CARD
-============================== */
+/* CARD */
 
 .card {
 
@@ -107,9 +100,7 @@ body {
 }
 
 
-/* ==============================
-   EMOJI
-============================== */
+/* EMOJI */
 
 .big-emoji {
 
@@ -118,22 +109,17 @@ body {
     margin-bottom: 15px;
 
     animation:
-        floatEmoji
-        2s
+        floatEmoji 2s
         ease-in-out
         infinite;
 }
 
 
-/* ==============================
-   TEXT
-============================== */
+/* TEXT */
 
 .small-title {
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
     font-size: 11px;
 
@@ -147,7 +133,7 @@ body {
 h1 {
 
     font-size:
-        clamp(38px, 9vw, 65px);
+        clamp(38px,9vw,65px);
 
     line-height: 1.15;
 
@@ -157,7 +143,7 @@ h1 {
 h2 {
 
     font-size:
-        clamp(23px, 5vw, 32px);
+        clamp(23px,5vw,32px);
 
     margin: 15px 0;
 }
@@ -179,9 +165,7 @@ h2 {
 }
 
 
-/* ==============================
-   BUTTON
-============================== */
+/* BUTTON */
 
 .main-button {
 
@@ -209,8 +193,7 @@ h2 {
         0 12px 35px
         rgba(0,0,0,0.3);
 
-    transition:
-        transform 0.25s ease;
+    transition: 0.25s;
 }
 
 .main-button:hover {
@@ -222,14 +205,11 @@ h2 {
 
 .main-button:active {
 
-    transform:
-        scale(0.95);
+    transform: scale(0.95);
 }
 
 
-/* ==============================
-   SCRATCH
-============================== */
+/* SCRATCH */
 
 .scratch-wrapper {
 
@@ -245,10 +225,10 @@ h2 {
 .scratch-box {
 
     width:
-        min(88vw, 430px);
+        min(88vw,430px);
 
     height:
-        min(120vw, 550px);
+        min(120vw,550px);
 
     max-height: 67vh;
 
@@ -303,9 +283,7 @@ h2 {
 }
 
 
-/* ==============================
-   POEMS
-============================== */
+/* POEMS */
 
 .poem,
 .proposal-poem {
@@ -324,9 +302,7 @@ h2 {
 }
 
 
-/* ==============================
-   FINAL
-============================== */
+/* FINAL */
 
 .final-card {
 
@@ -343,9 +319,7 @@ h2 {
 }
 
 
-/* ==============================
-   YES / NO
-============================== */
+/* ANSWERS */
 
 .answer-buttons {
 
@@ -402,11 +376,6 @@ h2 {
     color: #555;
 }
 
-.no-button:hover {
-
-    transform: scale(0.95);
-}
-
 #answerMessage {
 
     margin-top: 30px;
@@ -419,9 +388,7 @@ h2 {
 }
 
 
-/* ==============================
-   FLOATING HEARTS
-============================== */
+/* FLOATING HEARTS */
 
 #heartsContainer {
 
@@ -448,14 +415,10 @@ h2 {
         forwards;
 
     opacity: 0.8;
-
-    pointer-events: none;
 }
 
 
-/* ==============================
-   FIREWORK
-============================== */
+/* FIREWORK */
 
 #fireworksCanvas {
 
@@ -475,9 +438,7 @@ h2 {
 }
 
 
-/* ==============================
-   ANIMATIONS
-============================== */
+/* ANIMATIONS */
 
 @keyframes cardIn {
 
@@ -502,17 +463,12 @@ h2 {
 
 @keyframes floatEmoji {
 
-    0%,
-    100% {
-
-        transform:
-            translateY(0);
+    0%,100% {
+        transform: translateY(0);
     }
 
     50% {
-
-        transform:
-            translateY(-12px);
+        transform: translateY(-12px);
     }
 }
 
@@ -534,14 +490,11 @@ h2 {
 }
 
 
-/* ==============================
-   MOBILE
-============================== */
+/* MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
 
     .screen {
-
         padding: 12px;
     }
 
@@ -553,7 +506,6 @@ h2 {
     }
 
     .big-emoji {
-
         font-size: 70px;
     }
 
