@@ -25,41 +25,44 @@ const finalScreen =
 const startButton =
     document.getElementById("startButton");
 
-const continueButton =
-    document.getElementById("continueButton");
+const birthdayContinue =
+    document.getElementById(
+        "birthdayContinue"
+    );
 
 const proposalButton =
-    document.getElementById("proposalButton");
+    document.getElementById(
+        "proposalButton"
+    );
 
 const yesButton =
-    document.getElementById("yesButton");
+    document.getElementById(
+        "yesButton"
+    );
 
 const noButton =
-    document.getElementById("noButton");
+    document.getElementById(
+        "noButton"
+    );
+
+const answerMessage =
+    document.getElementById(
+        "answerMessage"
+    );
 
 
 /* =========================================
-   AUDIO
+   MUSIC
 ========================================= */
 
-const music =
+const loveSong =
     document.getElementById(
-        "backgroundMusic"
-    );
-
-const popSound =
-    document.getElementById(
-        "popSound"
-    );
-
-const fireworkSound =
-    document.getElementById(
-        "fireworkSound"
+        "loveSong"
     );
 
 
 /* =========================================
-   SHOW SCREEN
+   SCREEN CHANGE
 ========================================= */
 
 function showScreen(screen) {
@@ -82,32 +85,35 @@ function showScreen(screen) {
 
 
 /* =========================================
-   START BUTTON
+   START WEBSITE
 ========================================= */
 
 startButton.addEventListener(
     "click",
-    () => {
+    function () {
 
         showScreen(
             scratchScreen
         );
 
+
         /*
-         Browser audio permission:
-         User has interacted, so music
-         can start here.
+          Start music after
+          user interaction.
         */
 
-        music.volume = 0.45;
+        loveSong.volume = 0.45;
 
-        music.play().catch(() => {
+        loveSong
+            .play()
+            .catch(() => {
 
-            console.log(
-                "Music playback blocked."
-            );
+                console.log(
+                    "Music autoplay blocked."
+                );
 
-        });
+            });
+
 
         setupScratch();
 
@@ -116,29 +122,31 @@ startButton.addEventListener(
 
 
 /* =========================================
-   SCRATCH SYSTEM
+   SCRATCH CARD
 ========================================= */
 
-const canvas =
+const scratchCanvas =
     document.getElementById(
         "scratchCanvas"
     );
 
-const ctx =
-    canvas.getContext("2d");
-
-
-const scratchPercent =
-    document.getElementById(
-        "scratchPercent"
+const scratchCtx =
+    scratchCanvas.getContext(
+        "2d"
     );
 
 
-let drawing = false;
+const scratchStatus =
+    document.getElementById(
+        "scratchStatus"
+    );
 
-let scratchFinished = false;
 
-let lastPercent = 0;
+let isDrawing = false;
+
+let scratchComplete = false;
+
+let lastPercentage = 0;
 
 
 /* =========================================
@@ -148,108 +156,129 @@ let lastPercent = 0;
 function setupScratch() {
 
     const rect =
-        canvas.getBoundingClientRect();
+        scratchCanvas
+            .getBoundingClientRect();
 
-    canvas.width =
-        rect.width;
 
-    canvas.height =
-        rect.height;
+    scratchCanvas.width =
+        Math.floor(rect.width);
+
+    scratchCanvas.height =
+        Math.floor(rect.height);
 
 
     /*
-      Scratch layer
+      Pink scratch layer
     */
 
-    ctx.globalCompositeOperation =
+    scratchCtx.globalCompositeOperation =
         "source-over";
 
 
     const gradient =
-        ctx.createLinearGradient(
+        scratchCtx.createLinearGradient(
             0,
             0,
-            canvas.width,
-            canvas.height
+            scratchCanvas.width,
+            scratchCanvas.height
         );
 
 
     gradient.addColorStop(
         0,
-        "#ffd2e8"
+        "#ffd2e9"
     );
+
 
     gradient.addColorStop(
         0.5,
-        "#ff78b5"
+        "#ff72b3"
     );
+
 
     gradient.addColorStop(
         1,
-        "#e91e79"
+        "#e91d78"
     );
 
 
-    ctx.fillStyle =
+    scratchCtx.fillStyle =
         gradient;
 
 
-    ctx.fillRect(
+    scratchCtx.fillRect(
         0,
         0,
-        canvas.width,
-        canvas.height
+        scratchCanvas.width,
+        scratchCanvas.height
     );
 
 
     /*
-      Scratch text
+      Main text
     */
 
-    ctx.fillStyle =
+    scratchCtx.fillStyle =
         "white";
 
-    ctx.textAlign =
+
+    scratchCtx.textAlign =
         "center";
 
-    ctx.textBaseline =
+
+    scratchCtx.textBaseline =
         "middle";
 
 
-    ctx.font =
+    scratchCtx.font =
         "bold 28px Arial";
 
 
-    ctx.fillText(
+    scratchCtx.fillText(
         "SCRATCH ME ❤️",
-        canvas.width / 2,
-        canvas.height / 2
+        scratchCanvas.width / 2,
+        scratchCanvas.height / 2
     );
 
 
-    ctx.font =
+    scratchCtx.font =
         "17px Arial";
 
 
-    ctx.fillText(
+    scratchCtx.fillText(
         "Your surprise is waiting...",
-        canvas.width / 2,
-        canvas.height / 2 + 40
+        scratchCanvas.width / 2,
+        scratchCanvas.height / 2 + 42
     );
+
+
+    scratchComplete =
+        false;
+
+
+    lastPercentage =
+        0;
+
+
+    scratchStatus.innerText =
+        "Scratch: 0%";
 
 }
 
 
 /* =========================================
-   GET TOUCH / MOUSE POSITION
+   POSITION
 ========================================= */
 
-function getPosition(event) {
+function getPointerPosition(event) {
 
     const rect =
-        canvas.getBoundingClientRect();
+        scratchCanvas
+            .getBoundingClientRect();
+
 
     let clientX;
+
     let clientY;
 
 
@@ -295,8 +324,8 @@ function getPosition(event) {
 function scratch(event) {
 
     if (
-        !drawing ||
-        scratchFinished
+        !isDrawing ||
+        scratchComplete
     ) {
 
         return;
@@ -308,26 +337,28 @@ function scratch(event) {
 
 
     const position =
-        getPosition(event);
+        getPointerPosition(
+            event
+        );
 
 
-    ctx.globalCompositeOperation =
+    scratchCtx.globalCompositeOperation =
         "destination-out";
 
 
-    ctx.beginPath();
+    scratchCtx.beginPath();
 
 
-    ctx.arc(
+    scratchCtx.arc(
         position.x,
         position.y,
-        32,
+        35,
         0,
         Math.PI * 2
     );
 
 
-    ctx.fill();
+    scratchCtx.fill();
 
 
     calculateScratch();
@@ -336,84 +367,92 @@ function scratch(event) {
 
 
 /* =========================================
-   CALCULATE SCRATCH %
+   CALCULATE %
 ========================================= */
 
 function calculateScratch() {
 
     const imageData =
-        ctx.getImageData(
+        scratchCtx.getImageData(
             0,
             0,
-            canvas.width,
-            canvas.height
+            scratchCanvas.width,
+            scratchCanvas.height
         );
 
 
-    const data =
+    const pixels =
         imageData.data;
 
 
-    let transparent =
+    let transparentPixels =
         0;
 
 
     /*
-      Sample pixels for mobile performance
+      Check every 16th pixel.
+      This keeps mobile smooth.
     */
 
     for (
         let i = 3;
-        i < data.length;
+        i < pixels.length;
         i += 16
     ) {
 
         if (
-            data[i] === 0
+            pixels[i] === 0
         ) {
 
-            transparent++;
+            transparentPixels++;
 
         }
 
     }
 
 
-    const total =
-        data.length / 16;
+    const totalPixels =
+        pixels.length / 16;
 
 
     const percentage =
         Math.floor(
-            (transparent / total) * 100
+            (
+                transparentPixels /
+                totalPixels
+            ) * 100
         );
 
 
     if (
         percentage !==
-        lastPercent
+        lastPercentage
     ) {
 
-        lastPercent =
+        lastPercentage =
             percentage;
 
-        scratchPercent.innerText =
-            `Scratch: ${percentage}%`;
+
+        scratchStatus.innerText =
+            "Scratch: " +
+            percentage +
+            "%";
 
     }
 
 
     /*
-      Unlock after 55%
+      Unlock at 55%
     */
 
     if (
         percentage >= 55 &&
-        !scratchFinished
+        !scratchComplete
     ) {
 
-        scratchFinished =
+        scratchComplete =
             true;
+
 
         finishScratch();
 
@@ -423,54 +462,54 @@ function calculateScratch() {
 
 
 /* =========================================
-   MOUSE
+   MOUSE EVENTS
 ========================================= */
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "mousedown",
-    () => {
+    function () {
 
-        drawing = true;
+        isDrawing = true;
 
     }
 );
 
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "mouseup",
-    () => {
+    function () {
 
-        drawing = false;
+        isDrawing = false;
 
     }
 );
 
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "mouseleave",
-    () => {
+    function () {
 
-        drawing = false;
+        isDrawing = false;
 
     }
 );
 
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "mousemove",
     scratch
 );
 
 
 /* =========================================
-   TOUCH
+   TOUCH EVENTS
 ========================================= */
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "touchstart",
-    () => {
+    function () {
 
-        drawing = true;
+        isDrawing = true;
 
     },
     {
@@ -479,11 +518,11 @@ canvas.addEventListener(
 );
 
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
     "touchend",
-    () => {
+    function () {
 
-        drawing = false;
+        isDrawing = false;
 
     },
     {
@@ -492,7 +531,20 @@ canvas.addEventListener(
 );
 
 
-canvas.addEventListener(
+scratchCanvas.addEventListener(
+    "touchcancel",
+    function () {
+
+        isDrawing = false;
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+scratchCanvas.addEventListener(
     "touchmove",
     scratch,
     {
@@ -502,24 +554,24 @@ canvas.addEventListener(
 
 
 /* =========================================
-   SCRATCH FINISHED
+   SCRATCH COMPLETE
 ========================================= */
 
 function finishScratch() {
 
     /*
-      Remove scratch completely
+      Remove scratch layer
     */
 
-    ctx.clearRect(
+    scratchCtx.clearRect(
         0,
         0,
-        canvas.width,
-        canvas.height
+        scratchCanvas.width,
+        scratchCanvas.height
     );
 
 
-    scratchPercent.innerText =
+    scratchStatus.innerText =
         "❤️ SURPRISE UNLOCKED ❤️";
 
 
@@ -527,27 +579,17 @@ function finishScratch() {
       PARTY POP SOUND
     */
 
-    popSound.currentTime = 0;
-
-    popSound.volume = 1;
-
-    popSound.play().catch(() => {});
+    playPartySound();
 
 
     /*
-      FIREWORK SOUND
+      Fireworks sound
     */
 
     setTimeout(
-        () => {
+        function () {
 
-            fireworkSound.currentTime = 0;
-
-            fireworkSound.volume = 0.7;
-
-            fireworkSound
-                .play()
-                .catch(() => {});
+            playFireworkSound();
 
         },
         150
@@ -558,15 +600,16 @@ function finishScratch() {
       Fireworks
     */
 
-    startFireworks();
+    launchFireworks();
 
 
     /*
-      Birthday screen
+      Birthday message after
+      fireworks
     */
 
     setTimeout(
-        () => {
+        function () {
 
             showScreen(
                 birthdayScreen
@@ -580,16 +623,192 @@ function finishScratch() {
 
 
 /* =========================================
-   FIREWORK CANVAS
+   PARTY POP SOUND
 ========================================= */
 
-const fireCanvas =
+function playPartySound() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        const audioContext =
+            new AudioContext();
+
+
+        const oscillator =
+            audioContext.createOscillator();
+
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            "sawtooth";
+
+
+        oscillator.frequency.setValueAtTime(
+            180,
+            audioContext.currentTime
+        );
+
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            40,
+            audioContext.currentTime + 0.35
+        );
+
+
+        gain.gain.setValueAtTime(
+            0.5,
+            audioContext.currentTime
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.35
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + 0.35
+        );
+
+
+    } catch (error) {
+
+        console.log(
+            "Party sound error",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   FIREWORK SOUND
+========================================= */
+
+function playFireworkSound() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        const audioContext =
+            new AudioContext();
+
+
+        const duration =
+            0.7;
+
+
+        const buffer =
+            audioContext.createBuffer(
+                1,
+                audioContext.sampleRate *
+                duration,
+                audioContext.sampleRate
+            );
+
+
+        const data =
+            buffer.getChannelData(0);
+
+
+        /*
+          White noise
+        */
+
+        for (
+            let i = 0;
+            i < data.length;
+            i++
+        ) {
+
+            data[i] =
+                Math.random() * 2 - 1;
+
+        }
+
+
+        const source =
+            audioContext.createBufferSource();
+
+
+        const gain =
+            audioContext.createGain();
+
+
+        source.buffer =
+            buffer;
+
+
+        gain.gain.setValueAtTime(
+            0.5,
+            audioContext.currentTime
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime +
+            duration
+        );
+
+
+        source.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        source.start();
+
+    } catch (error) {
+
+        console.log(
+            "Firework sound error",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   FIREWORKS
+========================================= */
+
+const fireworksCanvas =
     document.getElementById(
         "fireworksCanvas"
     );
 
-const fireCtx =
-    fireCanvas.getContext(
+
+const fireworksCtx =
+    fireworksCanvas.getContext(
         "2d"
     );
 
@@ -599,10 +818,10 @@ let particles = [];
 
 function resizeFireworks() {
 
-    fireCanvas.width =
+    fireworksCanvas.width =
         window.innerWidth;
 
-    fireCanvas.height =
+    fireworksCanvas.height =
         window.innerHeight;
 
 }
@@ -623,10 +842,12 @@ window.addEventListener(
 
 function createFirework(
     x,
-    y
+    y,
+    amount = 80
 ) {
 
     const hearts = [
+
         "❤️",
         "💖",
         "💕",
@@ -634,12 +855,13 @@ function createFirework(
         "💓",
         "💘",
         "💝"
+
     ];
 
 
     for (
         let i = 0;
-        i < 70;
+        i < amount;
         i++
     ) {
 
@@ -674,6 +896,10 @@ function createFirework(
             life:
                 100,
 
+            size:
+                Math.random() *
+                12 + 16,
+
             emoji:
                 hearts[
                     Math.floor(
@@ -690,16 +916,16 @@ function createFirework(
 
 
 /* =========================================
-   ANIMATE FIREWORK
+   FIREWORK ANIMATION
 ========================================= */
 
 function animateFireworks() {
 
-    fireCtx.clearRect(
+    fireworksCtx.clearRect(
         0,
         0,
-        fireCanvas.width,
-        fireCanvas.height
+        fireworksCanvas.width,
+        fireworksCanvas.height
     );
 
 
@@ -716,25 +942,29 @@ function animateFireworks() {
             particle.x +=
                 particle.vx;
 
+
             particle.y +=
                 particle.vy;
 
+
             particle.vy +=
                 particle.gravity;
+
 
             particle.life -=
                 1;
 
 
-            fireCtx.globalAlpha =
+            fireworksCtx.globalAlpha =
                 particle.life / 100;
 
 
-            fireCtx.font =
-                "22px Arial";
+            fireworksCtx.font =
+                particle.size +
+                "px Arial";
 
 
-            fireCtx.fillText(
+            fireworksCtx.fillText(
                 particle.emoji,
                 particle.x,
                 particle.y
@@ -744,7 +974,7 @@ function animateFireworks() {
     );
 
 
-    fireCtx.globalAlpha =
+    fireworksCtx.globalAlpha =
         1;
 
 
@@ -758,7 +988,7 @@ function animateFireworks() {
 
     } else {
 
-        fireCanvas.style.display =
+        fireworksCanvas.style.display =
             "none";
 
     }
@@ -767,12 +997,12 @@ function animateFireworks() {
 
 
 /* =========================================
-   START FIREWORKS
+   LAUNCH FIREWORKS
 ========================================= */
 
-function startFireworks() {
+function launchFireworks() {
 
-    fireCanvas.style.display =
+    fireworksCanvas.style.display =
         "block";
 
 
@@ -781,24 +1011,24 @@ function startFireworks() {
 
     createFirework(
         window.innerWidth * 0.20,
-        window.innerHeight * 0.30
+        window.innerHeight * 0.28
     );
 
 
     createFirework(
         window.innerWidth * 0.50,
-        window.innerHeight * 0.25
+        window.innerHeight * 0.22
     );
 
 
     createFirework(
         window.innerWidth * 0.80,
-        window.innerHeight * 0.32
+        window.innerHeight * 0.30
     );
 
 
     setTimeout(
-        () => {
+        function () {
 
             createFirework(
                 window.innerWidth * 0.35,
@@ -811,7 +1041,7 @@ function startFireworks() {
 
 
     setTimeout(
-        () => {
+        function () {
 
             createFirework(
                 window.innerWidth * 0.65,
@@ -819,7 +1049,7 @@ function startFireworks() {
             );
 
         },
-        800
+        850
     );
 
 
@@ -832,9 +1062,9 @@ function startFireworks() {
    BIRTHDAY → PROPOSAL
 ========================================= */
 
-continueButton.addEventListener(
+birthdayContinue.addEventListener(
     "click",
-    () => {
+    function () {
 
         showScreen(
             proposalScreen
@@ -850,7 +1080,7 @@ continueButton.addEventListener(
 
 proposalButton.addEventListener(
     "click",
-    () => {
+    function () {
 
         showScreen(
             finalScreen
@@ -861,7 +1091,7 @@ proposalButton.addEventListener(
 
 
 /* =========================================
-   SEND RESULT TO EMAIL
+   SEND RESULT TO FORMSPREE
 ========================================= */
 
 function sendResult(
@@ -876,7 +1106,7 @@ function sendResult(
 
 
     document.getElementById(
-        "formResponse"
+        "formAnswer"
     ).value =
         answer;
 
@@ -893,21 +1123,21 @@ function sendResult(
         new Date().toLocaleString(
             "en-IN",
             {
-                dateStyle: "full",
-                timeStyle: "long"
+                dateStyle:
+                    "full",
+
+                timeStyle:
+                    "long"
             }
         );
 
-
-    /*
-      Send Formspree request
-    */
 
     fetch(
         form.action,
         {
 
-            method: "POST",
+            method:
+                "POST",
 
             body:
                 new FormData(form),
@@ -922,20 +1152,20 @@ function sendResult(
         }
     )
     .then(
-        response => {
+        function (response) {
 
             if (
                 response.ok
             ) {
 
                 console.log(
-                    "Response sent successfully."
+                    "Result sent successfully ❤️"
                 );
 
             } else {
 
                 console.log(
-                    "Could not send response."
+                    "Formspree error."
                 );
 
             }
@@ -943,7 +1173,7 @@ function sendResult(
         }
     )
     .catch(
-        error => {
+        function (error) {
 
             console.log(
                 "Email error:",
@@ -957,15 +1187,15 @@ function sendResult(
 
 
 /* =========================================
-   YES
+   YES BUTTON
 ========================================= */
 
 yesButton.addEventListener(
     "click",
-    () => {
+    function () {
 
         /*
-          Send YES to email
+          EMAIL RESULT
         */
 
         sendResult(
@@ -975,7 +1205,7 @@ yesButton.addEventListener(
 
 
         /*
-          Screen celebration
+          MESSAGE
         */
 
         answerMessage.innerHTML =
@@ -984,212 +1214,159 @@ yesButton.addEventListener(
 
             "இனிமேல் என் கதையின்<br>" +
 
-            "அழகான கதாபாத்திரம் நீ தான்... 💍💕";
+            "அழகான கதாபாத்திரம்<br>" +
+
+            "நீ தான்... 💍💕";
 
 
         /*
-          Massive fireworks
+          BIG CELEBRATION
         */
 
-        startFireworks();
+        launchFireworks();
 
 
         setTimeout(
-            startFireworks,
+            launchFireworks,
             500
         );
 
 
         setTimeout(
-            startFireworks,
+            launchFireworks,
             1000
         );
+
+
+        setTimeout(
+            launchFireworks,
+            1500
+        );
+
+
+        /*
+          Heart burst
+        */
+
+        createHeartBurst();
 
     }
 );
 
 
 /* =========================================
-   NO
+   NO BUTTON
 ========================================= */
-
-let noClicks = 0;
-
 
 noButton.addEventListener(
     "click",
-    () => {
-
-        noClicks++;
-
-
-        if (
-            noClicks === 1
-        ) {
-
-            answerMessage.innerHTML =
-                "🥺 Are you sure? ❤️";
-
-        }
-
-        else {
-
-            answerMessage.innerHTML =
-                "💔 Okay... But my heart will still wait for you ❤️";
-
-        }
-
-
-        /*
-          Send NO result
-        */
+    function () {
 
         sendResult(
             "💔 NO",
             "She clicked the NO button."
         );
 
-    }
-);
+
+        answerMessage.innerHTML =
+
+            "🥺 Are you sure?<br>" +
+
+            "ஒருமுறை நன்றாக யோசித்துப் பாரு... ❤️";
 
 
-/* =========================================
-   NO BUTTON MOVES
-   Only after second attempt
-========================================= */
+        /*
+          Little heart effect
+        */
 
-noButton.addEventListener(
-    "mouseover",
-    () => {
-
-        if (
-            noClicks >= 1
-        ) {
-
-            moveNoButton();
-
-        }
+        createHeartBurst();
 
     }
 );
 
 
-function moveNoButton() {
-
-    const maxX =
-        window.innerWidth - 160;
-
-    const maxY =
-        window.innerHeight - 90;
-
-
-    const x =
-        Math.random() *
-        Math.max(
-            maxX,
-            50
-        );
-
-
-    const y =
-        Math.random() *
-        Math.max(
-            maxY,
-            50
-        );
-
-
-    noButton.style.position =
-        "fixed";
-
-
-    noButton.style.left =
-        `${x}px`;
-
-
-    noButton.style.top =
-        `${y}px`;
-
-}
-
-
 /* =========================================
-   FLOATING HEARTS
+   HEART BURST
 ========================================= */
 
-const heartsContainer =
-    document.getElementById(
-        "hearts-container"
-    );
+function createHeartBurst() {
+
+    const hearts = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💝"
+
+    ];
 
 
-const heartTypes = [
-    "❤️",
-    "💖",
-    "💕",
-    "💗",
-    "💓",
-    "💘",
-    "💝"
-];
+    for (
+        let i = 0;
+        i < 25;
+        i++
+    ) {
+
+        const heart =
+            document.createElement(
+                "div"
+            );
 
 
-function createFloatingHeart() {
-
-    const heart =
-        document.createElement(
-            "div"
-        );
+        heart.className =
+            "floating-heart";
 
 
-    heart.className =
-        "floating-heart";
+        heart.innerText =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
 
 
-    heart.innerText =
-        heartTypes[
-            Math.floor(
-                Math.random() *
-                heartTypes.length
+        heart.style.left =
+            Math.random() * 100 +
+            "%";
+
+
+        heart.style.fontSize =
+            Math.random() * 25 +
+            20 +
+            "px";
+
+
+        heart.style.animationDuration =
+            Math.random() * 3 +
+            3 +
+            "s";
+
+
+        document
+            .getElementById(
+                "heartsContainer"
             )
-        ];
+            .appendChild(
+                heart
+            );
 
 
-    heart.style.left =
-        Math.random() * 100 +
-        "%";
+        setTimeout(
+            function () {
 
+                heart.remove();
 
-    heart.style.fontSize =
-        Math.random() * 22 +
-        15 +
-        "px";
+            },
+            7000
+        );
 
-
-    heart.style.animationDuration =
-        Math.random() * 5 +
-        5 +
-        "s";
-
-
-    heartsContainer.appendChild(
-        heart
-    );
-
-
-    setTimeout(
-        () => {
-
-            heart.remove();
-
-        },
-        10000
-    );
+    }
 
 }
 
 
-setInterval(
-    createFloatingHeart,
-    500
-);
+/* =========================================
+   CONTINUOUS FLOATING HE
